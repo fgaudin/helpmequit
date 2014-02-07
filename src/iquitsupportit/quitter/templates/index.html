@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ profile.user.first_name }}{% endblock %}
+{% block content %}
+<p>My name is {{ profile.user.first_name }} and I've quit smoking {{ profile.duration_str }} ago.</p>
+<p>From what I've saved, I've donated ${{ profile.amount_donated|floatformat }}
+to {{ profile.current_beneficiary.name }}</p>
+<p>Support me and {{ profile.current_beneficiary.name }} by pledging to:</p>
+<form action="{% url "pledge" profile.current_beneficiary.id %}" method="post" id="pledge-form">
+<p>donate them ${{ form.amount }}</p>
+<p>when I reach {{ form.days }} days.</p>
+<p>My email {{ form.email }}</p>
+<input type="submit" />
+</form>
+
+<script type="text/javascript">
+$('#pledge-form').submit(function(e){
+    e.preventDefault();
+    var form = e.target;
+    var data = {}
+    $.each($(form).serializeArray(), function(){
+        data[this.name] = this.value
+    });
+    console.log(data);
+    $.post($(form).attr('action'), data, function(response){
+
+    });
+});
+</script>
+{% endblock %}
