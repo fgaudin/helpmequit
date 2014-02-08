@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-import datetime
 from django.utils.timezone import now
+from django.db.models.aggregates import Sum
 
 
 class Profile(models.Model):
@@ -20,6 +20,10 @@ class Profile(models.Model):
     def duration(self):
         return now() - self.quit_date
 
+    def duration_in_sec(self):
+        duration = self.duration()
+        return duration.days * 86400 + duration.seconds
+
     def duration_str(self):
         duration = self.duration()
         return "%dd %02d:%02d" % (duration.days, duration.seconds // 3600, (duration.seconds // 60) % 60)
@@ -30,7 +34,26 @@ class Profile(models.Model):
         return (duration_in_sec * self.pack_price * self.cigarettes_per_day) / (self.pack_size * 86400)
 
     def amount_donated(self):
-        return self.amount_saved() * self.donation_percentage / 100
+        from donation.models import Payment
+        return Payment.objects.filter(quitter=self.user)\
+            .aggregate(sum=Sum('amount'))['sum'] or 0
+
+    def amount_pledged(self):
+        return self.amount_saved() * self.donation_percentage / 100 - self.amount_donated()
+
+    def supporter_donations(self):
+        from supporter.models import Pledge
+        return Pledge.objects.amount_donated(self.user)
+
+    def supporter_pledges(self):
+        from supporter.models import Pledge
+        return Pledge.objects.amount_pledged(self.user)
+
+    def total_amount(self):
+        return self.amount_donated()\
+            + self.amount_pledged()\
+            + self.supporter_donations()\
+            + self.supporter_pledges()
 
 
 class Beneficiary(models.Model):
@@ -40,3 +63,6 @@ class Beneficiary(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def amount_received(self):
+        pass

@@ -2,10 +2,11 @@ from django.shortcuts import get_object_or_404
 from quitter.models import Beneficiary
 from supporter.forms import PledgeForm
 from django.http.response import HttpResponseNotAllowed, HttpResponse
-from supporter.models import Pledge
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+import json
+from django.utils.translation import gettext as _
 
 
 @csrf_exempt
@@ -27,5 +28,10 @@ def create(request, beneficiary_id):
         pledge.supporter = user
         pledge.beneficiary = beneficiary
         pledge.save()
+        response_data = {'status': True,
+                         'message': _('Thank you! Check your emails to confirm your pledge')}
+    else:
+        response_data = {'status': False,
+                         'errors': form.errors}
 
-    return HttpResponse('test')
+    return HttpResponse(json.dumps(response_data), content_type="application/json")

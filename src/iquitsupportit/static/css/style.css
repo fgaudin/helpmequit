@@ -1,0 +1,145 @@
+.error {
+    color: rgb(202, 60, 60);
+}
+
+body {
+    background: url('/static/img/binding_dark.png');
+}
+
+#content {
+    max-width: 1024px;
+    margin: 0 auto;
+    background: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* HELLO BOX */
+.hello-box {
+    width: 300px;
+    height: 200px;
+    border-radius: 25px;
+    background: #E44436;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    color: white;
+    text-align: center;
+    /*transform:rotate(-17deg);
+    -ms-transform:rotate(-17deg);
+    -webkit-transform:rotate(-17deg); */
+}
+
+.hello-box h1, .hello-box h2 {
+    margin: 0;
+    font-family: monospace;
+}
+
+.hello-box h1{
+    font-size: 2.6em;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-weight: 900;
+}
+
+.hello-box h2{
+    margin-top: -8px;
+    margin-bottom: 5px;
+    text-transform: lowercase;
+}
+
+.hello-box .name {
+    height: 80px;
+    width: 100%;
+    position: relative;
+    background: #FDFDFD;
+    color: black;
+    padding-top: 30px;
+    font-size: 2.7em;
+    font-weight: bold;
+    font-family:cursive;
+}
+
+/* END HELLO BOX */
+
+/* SINCE BOX */
+#since-box {
+    text-align: center;
+}
+#since-box #since-message {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+#clock {
+    display: inline-block;
+    width: inherit;
+    margin: 35px 0 15px 0;
+}
+#charity-box {
+    font-size: 1.8em;
+}
+/* END SINCE BOX*/
+
+/* BENEFICIARY BOX */
+#beneficiary-box {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.3em;
+    background: url("/static/img/shinda.jpg");
+    color: #FEFEFE;
+    font-weight: bold;
+}
+#beneficiary {
+    padding: 35px 0 25px 0;
+    font-size: 2em;
+}
+#total-amount {
+    padding: 25px 0 25px 0;
+    font-size: 2.5em;
+}
+/* END BENEFICIARY BOX*/
+
+/* TESTIMONY BOX */
+#testimony-box {
+    margin: 40px 40px 40px 40px;
+    text-align: justify;
+    font-family: "Georgia", serif;
+    color: #666;
+    font-style: italic;
+    line-height: 1.8;
+    border-left: 5px solid #ddd;
+    padding-left: 1.5em;
+}
+/* END TESTIMONY BOX*/
+
+/* MEDIA BOX */
+#media-box {
+    margin: 40px auto;
+    width: 360px;
+}
+/* END MEDIA BOX*/
+
+/* PLEDGE BOX */
+#pledge-box {
+    margin: 0 20px;
+}
+#pledge-disclaimer {
+    margin-top: 10px;
+    font-style: italic;
+}
+/* END PLEDGE BOX*/
+
+/* DONATIONS BOX */
+#donations-box {
+    margin: 0 20px;
+}
+/* END DONATIONS BOX*/
+
+/* INFO BOX */
+#info-box {
+    margin: 0 20px;
+}
+/* END INFO BOX*/
+
+#share-buttons {
+    text-align: center;
+}

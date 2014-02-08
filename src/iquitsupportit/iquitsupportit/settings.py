@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'quitter',
     'supporter',
+    'donation',
 )
 
 MIDDLEWARE_CLASSES = (

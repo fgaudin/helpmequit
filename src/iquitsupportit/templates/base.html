@@ -2,14 +2,19 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}title{% endblock %}</title>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static "css/pure-min.css" %}">
         <link rel="stylesheet" href="{% static "css/style.css" %}">
+        <link rel="stylesheet" href="{% static "css/flipclock.css" %}">
         <script src="{% static "js/jquery-1.11.0.min.js" %}"></script>
+        <script src="{% static "js/flipclock.min.js" %}"></script>
     </head>
     <body>
-    {% block content %}
-
-    {% endblock %}
+        <div id="content">
+        {% block content %}
+        {% endblock %}
+        </div>
     </body>
 </html>

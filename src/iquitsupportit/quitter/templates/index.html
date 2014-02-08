@@ -1,19 +1,135 @@
 {% extends "base.html" %}
 
-{% block title %}{{ profile.user.first_name }}{% endblock %}
+{% block title %}Support {{ profile.user.first_name }} for quitting smoking by supporting a charity{% endblock %}
 {% block content %}
-<p>My name is {{ profile.user.first_name }} and I've quit smoking {{ profile.duration_str }} ago.</p>
-<p>From what I've saved, I've donated ${{ profile.amount_donated|floatformat }}
-to {{ profile.current_beneficiary.name }}</p>
-<p>Support me and {{ profile.current_beneficiary.name }} by pledging to:</p>
-<form action="{% url "pledge" profile.current_beneficiary.id %}" method="post" id="pledge-form">
-<p>donate them ${{ form.amount }}</p>
-<p>when I reach {{ form.days }} days.</p>
-<p>My email {{ form.email }}</p>
-<input type="submit" />
-</form>
+<div class="pure-g-r">
+    <div class="pure-u-2-5">
+        <div class="hello-box">
+            <h1>Hello</h1>
+            <h2>My name is</h2>
+            <div class="name">
+            {{ profile.user.first_name }}
+            </div>
+        </div>
+    </div>
+    <div class="pure-u-3-5">
+        <div id="since-box">
+            <div id="since-message">I haven't smoked for</div>
+            <div id="clock"></div>
+            <div id="charity-box">
+                and {{ profile.donation_percentage }}% of what I save goes to
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pure-g-r">
+    <div class="pure-u-1">
+        <div id="beneficiary-box">
+             <div id="beneficiary">- {{ profile.current_beneficiary.name }} -</div>
+             with your help, I've raised
+             <div id="total-amount">${{ profile.total_amount|floatformat }}</div>
+        </div>
+    </div>
+</div>
+<div class="pure-g-r">
+    <div class="pure-u-3-5">
+        <div id="testimony-box">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel odio vehicula, faucibus sapien id, fringilla ligula. In dignissim orci at est ultricies consectetur. Nam vitae auctor tellus, a iaculis enim. Vivamus vehicula ipsum eu arcu congue pharetra. Curabitur varius pharetra tellus sed sollicitudin. Donec ac pulvinar augue. Aenean sed blandit mi, vel hendrerit sem. Nam condimentum risus non tincidunt rhoncus. Fusce sed quam ultrices, feugiat metus id, ultricies enim. Sed vitae tellus facilisis tortor tempor pretium. Sed pellentesque mauris magna, vitae ullamcorper dolor suscipit sed. Nulla varius est erat, id venenatis neque varius in. Praesent vitae ultricies nunc, et viverra enim.</p>
+        </div>
+    </div>
+    <div class="pure-u-2-5">
+        <div id="media-box">
+            <iframe src="//player.vimeo.com/video/9337835?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="360" height="243" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+<div class="pure-g-r">
+    <div class="pure-u-1-3">
+        <div id="donations-box">
+            <h1>Donations</h1>
+            <table class="pure-table pure-table-horizontal pure-table-striped">
+                <tbody>
+                    <tr>
+                        <td>My donations</td>
+                        <td>${{ profile.amount_donated }}</td>
+                    </tr>
+                    <tr>
+                        <td>My pledges</td>
+                        <td>${{ profile.amount_pledged|floatformat }}</td>
+                    </tr>
+                    <tr>
+                        <td>Supporters' donations</td>
+                        <td>${{ profile.supporter_donations }}</td>
+                    </tr>
+                    <tr>
+                        <td>Supporters' pledges</td>
+                        <td>${{ profile.supporter_pledges }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="pure-u-1-3">
+        <div id="pledge-box">
+            <h1>Support us</h1>
+            <form action="{% url "pledge" profile.current_beneficiary.id %}" method="post" id="pledge-form" class="pure-form">
+            <div class="pure-g-r">
+                <div class="pure-u-2-5">
+                <label for="id_days">when I reach</label>
+                </div>
+                <div class="pure-u-3-5">
+                {{ form.days }}
+                </div>
+            </div>
+            <div class="pure-g-r">
+                <div class="pure-u-2-5">
+                <label for="id_amount">you'll donate</label>
+                </div>
+                <div class="pure-u-3-5">
+                {{ form.amount }}
+                </div>
+            </div>
+            <div class="pure-g-r">
+                <div class="pure-u-2-5">
+                <label for="id_email">Remind you at</label>
+                </div>
+                <div class="pure-u-3-5">
+                {{ form.email }}
+                </div>
+            </div>
+            <div><input type="submit" /></div>
+            <div id="pledge-disclaimer"><small>This is a pledge, I'll receive no money. First, you will receive an email to validate
+            your address. When I've reached the goal you set, you will receive another email with a link to the charity website
+            and a button to confirm your donation.</small></div>
+            </form>
+            <div id="pledge-result">
+                <div class="message"></div>
+            </div>
+        </div>
+    </div>
+    <div class="pure-u-1-3">
+        <div id="info-box">
+            <h1>Share</h1>
+            <div id="share-buttons">
+                <span class='st_facebook_large' displayText='Facebook'></span>
+                <span class='st_twitter_large' displayText='Tweet'></span>
+                <span class='st_googleplus_large' displayText='Google +'></span>
+                <span class='st_pinterest_large' displayText='Pinterest'></span>
+                <span class='st_email_large' displayText='Email'></span>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
+var clock = $('#clock').FlipClock({
+    clockFace: 'DailyCounter',
+    showSeconds: false,
+    autoStart: false
+});
+clock.setTime({{ profile.duration_in_sec }});
+clock.start();
+
 $('#pledge-form').submit(function(e){
     e.preventDefault();
     var form = e.target;
@@ -21,10 +137,21 @@ $('#pledge-form').submit(function(e){
     $.each($(form).serializeArray(), function(){
         data[this.name] = this.value
     });
-    console.log(data);
     $.post($(form).attr('action'), data, function(response){
-
+        if (response.status) {
+            $('#pledge-result .message').html(response.message);
+            $('#pledge-form').hide();
+            $('#pledge-result').show();
+        } else {
+            $.each(response.errors, function(key, errors){
+                $('#id_' + key).after('<small class="error">' + errors.join(' ') + '</small>');
+            });
+        }
     });
 });
 </script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "5a92aa43-cf36-4fba-9863-59aed8b2a340", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
 {% endblock %}
