@@ -1,0 +1,10 @@
+Thank you! I really appreciate your support.
+
+You pledged to donate ${{ amount }} when I reach {{ days }} days without smoking.
+Now, you need to confirm your pledge so I can send you a reminder and a link when I reach this goal.
+
+Confirm: {{ url }}
+
+Best regards,
+
+{{ quitter }}

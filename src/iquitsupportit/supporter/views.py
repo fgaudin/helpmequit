@@ -14,6 +14,8 @@ from django.core.urlresolvers import reverse
 from django.db.transaction import commit_on_success
 from django.core.mail import send_mail
 from django.conf import settings
+from django.template.loader import render_to_string
+from django.core.mail.message import EmailMultiAlternatives
 
 
 @csrf_exempt
@@ -38,18 +40,24 @@ def pledge_create(request, beneficiary_id):
         pledge.hash = uuid.uuid4()
         pledge.save()
 
+        template_html = 'email/confirm.html'
+        template_text = 'email/confirm.txt'
+        subject = _(u"Please confirm your pledge")
+        to = user.email
+        from_email = settings.DEFAULT_FROM_EMAIL
         url = 'http://%s%s' % (request.get_host(),
                                reverse('pledge_confirm', kwargs={'hash': pledge.hash}))
 
-        message = _("""Thank you! I really appreciate your support.\n\nYou
- pledged to donate $%(amount)d when I reach %(days)d days without smoking. Now, you
- need to confirm your pledge so we can send you a reminder and a link when I
- will reach this goal. Confirm: %(url)s""") % {'amount': pledge.amount,
-                              'days': pledge.days,
-                              'url': url}
+        context = {'amount': pledge.amount,
+                   'days': pledge.days,
+                   'url': url,
+                   'quitter': pledge.beneficiary.quitter.first_name}
+        text_content = render_to_string(template_text, context)
+        html_content = render_to_string(template_html, context)
 
-        send_mail(_('Please confirm your pledge'), message, settings.DEFAULT_FROM_EMAIL,
-                  [user.email], fail_silently=False)
+        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
 
         response_data = {'status': True,
                          'message': _('Thank you! Check your emails to confirm your pledge')}

@@ -127,6 +127,13 @@ body {
     font-style: italic;
     font-size: 0.8em;
 }
+#pledge-loading {
+    height: 32px;
+    width: 32px;
+    margin: 0 auto;
+    background: url('/static/img/loading.gif');
+    display: none;
+}
 /* END PLEDGE BOX*/
 
 /* DONATIONS BOX */
