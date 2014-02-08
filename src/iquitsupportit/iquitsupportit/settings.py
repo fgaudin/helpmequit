@@ -96,3 +96,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+DEFAULT_FROM_EMAIL = 'contact@iquitsupport.us'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025

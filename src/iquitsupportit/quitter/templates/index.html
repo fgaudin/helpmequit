@@ -25,7 +25,7 @@
 <div class="pure-g-r">
     <div class="pure-u-1">
         <div id="beneficiary-box">
-             <div id="beneficiary">- {{ profile.current_beneficiary.name }} -</div>
+             <div id="beneficiary">{{ profile.current_beneficiary.name }}</div>
              with your help, I've raised
              <div id="total-amount">${{ profile.total_amount|floatformat }}</div>
         </div>
@@ -87,7 +87,7 @@
     <div class="pure-u-1-3">
         <div id="pledge-box">
             <h1>Support us</h1>
-            <form action="{% url "pledge" profile.current_beneficiary.id %}" method="post" id="pledge-form" class="pure-form">
+            <form action="{% url "pledge_create" profile.current_beneficiary.id %}" method="post" id="pledge-form" class="pure-form">
             <div class="pure-g-r">
                 <div class="pure-u-2-5">
                 <label for="id_days">when I reach</label>

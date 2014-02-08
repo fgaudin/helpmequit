@@ -24,6 +24,7 @@ class Pledge(models.Model):
     amount = models.PositiveIntegerField()
     confirmed = models.BooleanField(default=False)
     honored = models.BooleanField(default=False)
+    hash = models.CharField(max_length=128, unique=True)
 
     objects = PledgeManager()
 
