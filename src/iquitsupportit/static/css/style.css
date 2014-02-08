@@ -125,12 +125,37 @@ body {
 #pledge-disclaimer {
     margin-top: 10px;
     font-style: italic;
+    font-size: 0.8em;
 }
 /* END PLEDGE BOX*/
 
 /* DONATIONS BOX */
 #donations-box {
     margin: 0 20px;
+}
+.donation-box {
+    text-align: center;
+    height: 80px;
+    padding-top: 20px;
+}
+#donation-box-top-left {
+    border-right: 1px solid #6E6E6E;
+    border-bottom: 1px solid #6E6E6E;
+}
+#donation-box-top-right {
+    border-bottom: 1px solid #6E6E6E;
+}
+#donation-box-bottom-left {
+    border-right: 1px solid #6E6E6E;
+}
+.donation-label {
+    font-size: 0.8em;
+}
+.donation-value {
+    font-size: 1.8em;
+    font-weight: bold;
+    padding-top:15px;
+    color: #6E6E6E;
 }
 /* END DONATIONS BOX*/
 
