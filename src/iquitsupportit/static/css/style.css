@@ -41,9 +41,6 @@ body {
     margin-bottom: 30px;
     color: white;
     text-align: center;
-    /*transform:rotate(-17deg);
-    -ms-transform:rotate(-17deg);
-    -webkit-transform:rotate(-17deg); */
 }
 
 .hello-box h1, .hello-box h2 {
@@ -102,13 +99,21 @@ body {
     text-align: center;
     font-size: 1.5em;
     background: url("/static/img/shinda.jpg");
-    color: #FEFEFE;
+    color: #FFF;
     font-weight: bold;
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.7);
 }
 #beneficiary {
     padding: 35px 0 25px 0;
     font-size: 2em;
+}
+
+#beneficiary a {
+    text-decoration: none;
+    color: #FFF;
+}
+#beneficiary a:hover{
+   text-decoration: underline;
 }
 #total-amount {
     padding: 25px 0 25px 0;

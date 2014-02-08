@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Support {{ profile.user.first_name }} for quitting smoking by supporting a charity{% endblock %}
+{% block title %}Support {{ profile.user.first_name }} for quitting smoking by supporting {{ profile.current_beneficiary.name }}{% endblock %}
 {% block content %}
 <div class="pure-g-r">
     <div class="pure-u-2-5">
@@ -25,7 +25,7 @@
 <div class="pure-g-r">
     <div class="pure-u-1">
         <div id="beneficiary-box">
-             <div id="beneficiary">{{ profile.current_beneficiary.name }}</div>
+             <div id="beneficiary"><a href="{{ profile.current_beneficiary.url }}" target="_blank">{{ profile.current_beneficiary.name }}</a></div>
              with your help, I've raised
              <div id="total-amount">${{ profile.total_amount|floatformat }}</div>
         </div>
@@ -34,19 +34,14 @@
 <div class="pure-g-r">
     <div class="pure-u-3-5">
         <div id="testimony-box">
-            <p>There are tons of good reasons to quit smoking. And there are tons of bad ones to start again.
-            To keep motivation and to make it a bigger deal than my own health, I've decided to give the money
-            I save to help gorillas.</p>
-            <p>Through books, movies and Internet, I've become more and more conscious about the wildlife and how
-            we need to protect it from ourselves. It's because of a special affinity with gorillas that I've picked this
-            non-profit.</p>
-            <p>Now, every time I crave for a cigarette, I look at this page and it reminds me that I'm not only doing it for
-            me. The more you will support DFGFI, the more you will support me. Thank you!</p>
+            {{ profile.testimony|linebreaks }}
         </div>
     </div>
     <div class="pure-u-2-5">
         <div id="media-box">
-            <iframe src="//player.vimeo.com/video/9337835?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="360" height="243" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            {% autoescape off %}
+            {{ profile.video_snippet }}
+            {% endautoescape %}
         </div>
     </div>
 </div>

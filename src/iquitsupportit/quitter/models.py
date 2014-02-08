@@ -13,6 +13,8 @@ class Profile(models.Model):
     pack_size = models.PositiveIntegerField()
     donation_percentage = models.PositiveIntegerField(default=100)
     current_beneficiary = models.ForeignKey('Beneficiary')
+    testimony = models.TextField()
+    video_snippet = models.TextField()
 
     def __unicode__(self):
         return self.user.__unicode__()
@@ -59,6 +61,7 @@ class Profile(models.Model):
 class Beneficiary(models.Model):
     quitter = models.ForeignKey(User)
     name = models.CharField(max_length=255)
+    url = models.URLField()
     donate_url = models.URLField()
 
     def __unicode__(self):
