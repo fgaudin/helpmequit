@@ -27,7 +27,8 @@
         <div id="beneficiary-box">
              <div id="beneficiary"><a href="{{ profile.current_beneficiary.url }}" target="_blank">{{ profile.current_beneficiary.name }}</a></div>
              with your help, I've raised
-             <div id="total-amount">${{ profile.total_amount|floatformat }}</div>
+             <div id="total-amount">${{ profile.total_amount|floatformat:"0" }}</div>
+             <div id="copyright">&copy;{{ profile.current_beneficiary.name }}</div>
         </div>
     </div>
 </div>
@@ -59,7 +60,7 @@
                 <div class="pure-u-1-2">
                     <div id="donation-box-top-right" class="donation-box">
                         <div class="donation-label">My pledges</div>
-                        <div class="donation-value">${{ profile.amount_pledged|floatformat }}</div>
+                        <div class="donation-value">${{ profile.amount_pledged|floatformat:"0" }}</div>
                     </div>
                 </div>
             </div>
