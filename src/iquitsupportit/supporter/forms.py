@@ -14,4 +14,4 @@ class PledgeForm(forms.ModelForm):
         super(PledgeForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs['placeholder'] = self.fields[field].label
-            # self.fields[field].widget.attrs['required'] = True
+            self.fields[field].widget.attrs['required'] = True

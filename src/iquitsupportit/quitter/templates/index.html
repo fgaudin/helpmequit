@@ -140,6 +140,8 @@ $('#pledge-form').submit(function(e){
         } else {
             $.each(response.errors, function(key, errors){
                 $('#id_' + key).after('<small class="error">' + errors.join(' ') + '</small>');
+                $('#pledge-loading').hide();
+                $('#pledge-form').show();
             });
         }
     });
