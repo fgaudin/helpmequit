@@ -37,6 +37,13 @@ hr {
     background: rgb(28, 184, 65); /* this is a green */
 }
 
+#footer {
+    margin-top: 40px;
+    font-style: italic;
+    font-size: 0.8em;
+    text-align: center;
+}
+
 /* HELLO BOX */
 .hello-box {
     width: 300px;
@@ -192,12 +199,23 @@ hr {
 }
 /* END DONATIONS BOX*/
 
-/* INFO BOX */
+/* SHARE BOX */
 #info-box {
     margin: 0 20px;
 }
-/* END INFO BOX*/
+#help {
+    font-size: 1.3em;
+    font-style: italic;
+    margin-bottom: 50px;
+}
+#spread {
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
 
 #share-buttons {
     text-align: center;
 }
+/* END SHARE BOX*/
