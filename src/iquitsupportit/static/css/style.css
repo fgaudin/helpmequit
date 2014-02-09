@@ -206,12 +206,17 @@ hr {
 #help {
     font-size: 1.3em;
     font-style: italic;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+#logo {
+    text-align: center;
+    margin-bottom:20px;
 }
 #spread {
     font-size: 1.8em;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
