@@ -41,7 +41,10 @@ class Profile(models.Model):
             .aggregate(sum=Sum('amount'))['sum'] or 0
 
     def amount_pledged(self):
-        return self.amount_saved() * self.donation_percentage / 100 - self.amount_donated()
+        return self.amount_saved() * self.donation_percentage / 100
+
+    def amount_to_donate(self):
+        return self.amount_pledged() - self.amount_donated()
 
     def supporter_donations(self):
         from supporter.models import Pledge
@@ -50,6 +53,9 @@ class Profile(models.Model):
     def supporter_pledges(self):
         from supporter.models import Pledge
         return Pledge.objects.amount_pledged(self.user)
+
+    def supporter_donations_and_pledges(self):
+        return self.supporter_donations() + self.supporter_pledges()
 
     def total_amount(self):
         return self.amount_donated()\

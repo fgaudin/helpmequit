@@ -6,6 +6,12 @@ body {
     background: url('/static/img/binding_dark.png');
 }
 
+hr {
+  border: 1px solid #999;
+  width: 50%;
+  margin-bottom: 20px;
+}
+
 #content {
     max-width: 1024px;
     margin: 0 auto;
@@ -168,29 +174,14 @@ body {
 #donations-box {
     margin: 0 20px;
 }
-.donation-box {
-    text-align: center;
-    height: 80px;
-    padding-top: 20px;
-}
-#donation-box-top-left {
-    border-right: 1px solid #6E6E6E;
-    border-bottom: 1px solid #6E6E6E;
-}
-#donation-box-top-right {
-    border-bottom: 1px solid #6E6E6E;
-}
-#donation-box-bottom-left {
-    border-right: 1px solid #6E6E6E;
-}
-.donation-label {
-    font-size: 0.8em;
-}
 .donation-value {
     font-size: 1.8em;
     font-weight: bold;
-    padding-top:15px;
+    margin-top:20px;
+    margin-bottom: 25px;
     color: #6E6E6E;
+    padding-right:100px;
+    text-align: right;
 }
 /* END DONATIONS BOX*/
 

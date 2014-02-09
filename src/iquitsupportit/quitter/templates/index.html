@@ -50,34 +50,11 @@
     <div class="pure-u-1-3">
         <div id="donations-box">
             <h1>Donations</h1>
-            <div class="pure-g">
-                <div class="pure-u-1-2">
-                    <div id="donation-box-top-left" class="donation-box">
-                        <div class="donation-label">My donations</div>
-                        <div class="donation-value">${{ profile.amount_donated }}</div>
-                    </div>
-                </div>
-                <div class="pure-u-1-2">
-                    <div id="donation-box-top-right" class="donation-box">
-                        <div class="donation-label">My pledges</div>
-                        <div class="donation-value">${{ profile.amount_pledged|floatformat:"0" }}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="pure-g">
-                <div class="pure-u-1-2">
-                    <div id="donation-box-bottom-left" class="donation-box">
-                        <div class="donation-label">Supporters' donations</div>
-                        <div class="donation-value">${{ profile.supporter_donations }}</div>
-                    </div>
-                </div>
-                <div class="pure-u-1-2">
-                    <div id="donation-box-bottom-right" class="donation-box">
-                        <div class="donation-label">Supporters' pledges</div>
-                        <div class="donation-value">${{ profile.supporter_pledges }}</div>
-                    </div>
-                </div>
-            </div>
+            <div class="donation-label">Your donations and pledges</div>
+            <div class="donation-value">${{ profile.supporter_donations_and_pledges }}</div>
+            <hr>
+            <div class="donation-label">My donations</div>
+            <div class="donation-value">${{ profile.amount_pledged|floatformat:"0" }}</div>
         </div>
     </div>
     <div class="pure-u-1-3">
