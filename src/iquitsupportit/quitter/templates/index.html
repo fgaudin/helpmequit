@@ -151,9 +151,9 @@ $('#pledge-form').submit(function(e){
   function drawChart() {
     var data = google.visualization.arrayToDataTable([
       ['Origin', 'Amount (in $)'],
-      ['My donations',  {{ profile.amount_pledged|floatformat:"0" }}],
-      ['Your donations',  {{ profile.supporter_donations }}],
-      ['Your pledges', {{ profile.supporter_pledges }}],
+      ['My donations',  {v: {{ profile.amount_pledged|floatformat:"0" }}, f: '${{ profile.amount_pledged|floatformat:"0" }}'}],
+      ['Your donations',  {v: {{ profile.supporter_donations }}, f: '${{ profile.supporter_donations }}'}],
+      ['Your pledges', {v: {{ profile.supporter_pledges }}, f: '${{ profile.supporter_pledges }}'}],
     ]);
 
   var options = {
