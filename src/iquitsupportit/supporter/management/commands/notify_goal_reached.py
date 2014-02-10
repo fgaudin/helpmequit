@@ -29,7 +29,7 @@ class Command(BaseCommand):
                     subject = u"%(quitter)s has reached your goal" % {'quitter': pledge.beneficiary.quitter.first_name}
                     to = pledge.supporter.email
 
-                    url = 'http://%s%s' % (settings.ALLOWED_HOSTS[0],
+                    url = 'http://%s%s' % (settings.ALLOWED_HOSTS[0].lstrip('.'),
                                            reverse('pledge_honor', kwargs={'hash': pledge.hash}))
 
                     context = {'pledge': pledge,
