@@ -3,7 +3,7 @@
 }
 
 body {
-    background: url('/static/img/binding_dark.png');
+    background: url('/static/img/binding_dark.png') #434343;
 }
 
 hr {
