@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost:10001']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'south',
     'quitter',
     'supporter',
     'donation',
@@ -101,8 +102,8 @@ DEFAULT_FROM_EMAIL = 'contact@iquitsupport.us'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 
-EMAIL_HOST = 'mail.gandi.net'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'contact@iquitsupport.us'
-EMAIL_HOST_PASSWORD = 'D.H2;c[X3j]cy_LV#D7D]`"ZQKf#d\'ha'
-EMAIL_USE_TLS = True
+# EMAIL_HOST = 'mail.gandi.net'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'contact@iquitsupport.us'
+# EMAIL_HOST_PASSWORD = 'D.H2;c[X3j]cy_LV#D7D]`"ZQKf#d\'ha'
+# EMAIL_USE_TLS = True

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from quitter.models import Beneficiary
 import datetime
 from django.db.models.aggregates import Sum
+from django.utils.timezone import now
 
 
 class PledgeManager(models.Manager):
@@ -25,14 +26,30 @@ class Pledge(models.Model):
     confirmed = models.BooleanField(default=False)
     honored = models.BooleanField(default=False)
     hash = models.CharField(max_length=128, unique=True)
+    remind_attempts = models.PositiveIntegerField(default=0)
+    last_attempt = models.DateTimeField(null=True, blank=True)
 
     objects = PledgeManager()
 
     def __unicode__(self):
-        return "%s -> %s: $%s after %s days" % (self.supporter,
-                                                self.beneficiary,
-                                                self.amount,
-                                                self.days)
+        status = 'unconfirmed'
+        if self.honored:
+            status = 'honored'
+        elif self.confirmed:
+            status = 'confirmed'
 
-    def reached(self):
-        return (datetime.datetime.utcnow() - self.quitter.profile.quit_date).days >= self.days
+        return "%s -> %s: $%s after %s days [%s]" % (self.supporter,
+                                                           self.beneficiary,
+                                                           self.amount,
+                                                           self.days,
+                                                           status)
+
+    def should_send(self):
+        if not self.last_attempt:
+            return True
+        else:
+            next_attempt = self.last_attempt + datetime.timedelta(self.remind_attempts ** 2)
+            if now() >= next_attempt:
+                return True
+
+        return False

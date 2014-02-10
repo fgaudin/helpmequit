@@ -1,0 +1,12 @@
+Hey!
+
+{{ pledge.beneficiary.quitter.first_name }} hasn't smoked for {{ pledge.days }} days.
+
+You pledged to donate ${{ pledge.amount }} to {{ pledge.beneficiary.name }}.
+
+Follow these two steps and you're done:
+
+- Donate here: {{ pledge.beneficiary.donate_url }}
+- Confirm your donation here: {{ url }}
+
+A big thank you!
