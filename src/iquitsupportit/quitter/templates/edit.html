@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Edit your profile{% endblock %}
+{% block content %}
+<div class="pure-g-r">
+    <div class="pure-u-1">
+        <div id="password-box">
+            <form class="pure-form" action="" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>
+                    {% if user.has_usable_password %}
+                    Update your password
+                    {% else %}
+                    Set your password
+                    {% endif %}
+                    </legend>
+                    {{ password_form.new_password1 }} {{ password_form.new_password1.errors }}
+                    {{ password_form.new_password2 }} {{ password_form.new_password2.errors }}
+                </fieldset>
+                <p><input type="submit" name="update_password" value="Update password" /></p>
+            </form>
+        </div>
+    </div>
+</div>
+{% if user.has_usable_password %}
+<div class="pure-g-r">
+    <div class="pure-u-1">
+        <div id="edit-box">
+            <form class="pure-form pure-form-stacked" action="" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Profile</legend>
+                <div class="pure-g">
+                    <div class="pure-u-1-3">
+                        {{ user_form.first_name.label_tag }}
+                        {{ user_form.first_name }}
+                        {{ user_form.first_name.errors }}
+                    </div>
+                    <div class="pure-u-2-3">
+                        {{ profile_form.slug.label_tag }}
+                        {{ profile_form.slug }}
+                        {{ profile_form.slug.errors }}
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Settings</legend>
+                <div class="pure-g">
+                    <div class="pure-u-1-3">
+                        {{ profile_form.quit_date.label_tag }}
+                        {{ profile_form.quit_date }}
+                        {{ profile_form.quit_date.errors }}
+                    </div>
+                    <div class="pure-u-1-3">
+                        {{ profile_form.cigarettes_per_day.label_tag }}
+                        {{ profile_form.cigarettes_per_day }}
+                        {{ profile_form.cigarettes_per_day.errors }}
+                    </div>
+                    <div class="pure-u-1-3">
+                        {{ profile_form.pack_price.label_tag }}
+                        {{ profile_form.pack_price }}
+                        {{ profile_form.pack_price.errors }}
+                    </div>
+                </div>
+                <div class="pure-g">
+                    <div class="pure-u-1-3">
+                        {{ profile_form.pack_size.label_tag }}
+                        {{ profile_form.pack_size }}
+                        {{ profile_form.pack_size.errors }}
+                    </div>
+                    <div class="pure-u-1-3">
+                        {{ profile_form.donation_percentage.label_tag }}
+                        {{ profile_form.donation_percentage }}
+                        {{ profile_form.donation_percentage.errors }}
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Charity</legend>
+                <div class="pure-g">
+                    <div class="pure-u-1">
+                        {{ profile_form.current_beneficiary.label_tag }}
+                        {{ profile_form.current_beneficiary }}
+                        {{ profile_form.current_beneficiary.errors }}
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Testimony</legend>
+                <div class="pure-g">
+                    <div class="pure-u-1-2">
+                        {{ profile_form.testimony.label_tag }}
+                        {{ profile_form.testimony }}
+                        {{ profile_form.testimony.errors }}
+                    </div>
+                    <div class="pure-u-1-2">
+                        {{ profile_form.video_snippet.label_tag }}
+                        {{ profile_form.video_snippet }}
+                        {{ profile_form.video_snippet.errors }}
+                    </div>
+                </div>
+            </fieldset>
+            <p><input type="submit" name="update" value="Update" /></p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

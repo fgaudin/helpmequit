@@ -2,6 +2,28 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 from django.db.models.aggregates import Sum
+from django.conf import settings
+from django.contrib.auth.hashers import make_password
+import hashlib
+
+
+class ProfileManager(models.Manager):
+    def create_profile(self, user, hash):
+        default_profile = Profile.objects.get(slug=settings.DEFAULT_PROFILE)
+        default_beneficiary = default_profile.current_beneficiary
+        beneficiary = default_beneficiary.clone(user)
+
+        return self.create(user=user,
+                           slug=user.email,
+                           quit_date=now(),
+                           cigarettes_per_day=10,
+                           pack_price=7,
+                           pack_size=20,
+                           donation_percentage=100,
+                           current_beneficiary=beneficiary,
+                           testimony='Lorem ipsum',
+                           video_snippet='test',
+                           hash=hashlib.sha1(str(hash)).hexdigest())
 
 
 class Profile(models.Model):
@@ -15,6 +37,9 @@ class Profile(models.Model):
     current_beneficiary = models.ForeignKey('Beneficiary')
     testimony = models.TextField()
     video_snippet = models.TextField()
+    hash = models.CharField(max_length=128, null=True, blank=True)
+
+    objects = ProfileManager()
 
     def __unicode__(self):
         return self.user.__unicode__()
@@ -63,6 +88,9 @@ class Profile(models.Model):
             + self.supporter_donations()\
             + self.supporter_pledges()
 
+    def set_hash(self, hash):
+        self.hash = hashlib.sha1(str(hash)).hexdigest()
+
 
 class Beneficiary(models.Model):
     quitter = models.ForeignKey(User)
@@ -71,7 +99,10 @@ class Beneficiary(models.Model):
     donate_url = models.URLField()
 
     def __unicode__(self):
-        return self.name
+        return "%s (%s)" % (self.name, self.quitter)
 
-    def amount_received(self):
-        pass
+    def clone(self, user):
+        return self.__class__.objects.create(quitter=user,
+                                             name=self.name,
+                                             url=self.url,
+                                             donate_url=self.donate_url)

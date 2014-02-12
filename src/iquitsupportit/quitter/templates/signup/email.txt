@@ -1,0 +1,11 @@
+Thank you!
+
+To confirm your signup and your email address, please click on the following link:
+
+{{ url }}
+
+After setting your password, you will be able to set up your page.
+
+Good luck!
+
+{{ signature }}

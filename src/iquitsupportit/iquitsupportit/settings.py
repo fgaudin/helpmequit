@@ -25,7 +25,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['localhost:10001']
-
+SITENAME = "Help Me Quit"
 
 # Application definition
 
@@ -107,3 +107,10 @@ EMAIL_PORT = 1025
 # EMAIL_HOST_USER = 'contact@iquitsupport.us'
 # EMAIL_HOST_PASSWORD = 'D.H2;c[X3j]cy_LV#D7D]`"ZQKf#d\'ha'
 # EMAIL_USE_TLS = True
+
+EMAIL_SIGNATURE = 'The Help Me Quit Team'
+
+DEFAULT_PROFILE = 'francois'
+
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
+                           'auth.backends.TokenBackend',)

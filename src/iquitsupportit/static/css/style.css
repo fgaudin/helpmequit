@@ -15,7 +15,6 @@ body {
     max-width: 1024px;
     margin: 0 auto;
     background: white;
-    padding-top: 20px;
     padding-bottom: 20px;
 }
 
@@ -28,12 +27,20 @@ body {
 
 .messages li {
     padding: 10px;
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .messages .success{
-    color: white;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     background: rgb(28, 184, 65); /* this is a green */
+}
+
+.messages .info{
+    background: #0078E7;
+}
+
+.messages .error {
+    background: rgb(202, 60, 60);
 }
 
 #footer {
@@ -41,6 +48,31 @@ body {
     font-style: italic;
     font-size: 0.8em;
     text-align: center;
+}
+
+#login-link {
+    text-align: right;
+    padding-bottom: 20px;
+    padding-right: 10px;
+}
+
+#signup-box {
+    display: none;
+    text-align: right;
+    padding-right: 10px;
+    padding-bottom:20px;
+}
+
+#login-box {
+    display: none;
+    text-align: right;
+    padding-right: 10px;
+    padding-bottom:20px;
+}
+
+#loggedin-menu {
+    text-align: right;
+    padding-right: 10px;
 }
 
 /* HELLO BOX */
@@ -227,3 +259,17 @@ body {
     text-align: center;
 }
 /* END SHARE BOX*/
+
+/*** EDIT ***/
+
+/* PASSWORD BOX */
+#password-box {
+    margin: 20px;
+}
+/* END PASSWORD BOX */
+
+/* EDIT BOX */
+#edit-box {
+    margin: 20px;
+}
+/* END EDIT BOX */

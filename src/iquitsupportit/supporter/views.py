@@ -33,6 +33,7 @@ def pledge_create(request, beneficiary_id):
         except ObjectDoesNotExist:
             user = User.objects.create_user(email, email, '!')
             user.set_unusable_password()
+            user.save()
 
         pledge = form.save(commit=False)
         pledge.supporter = user

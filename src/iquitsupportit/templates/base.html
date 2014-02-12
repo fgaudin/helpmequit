@@ -20,6 +20,39 @@
             {% endfor %}
         </ul>
         {% endif %}
+        <div class="pure-g-r">
+            {% if user.is_authenticated %}
+                <div class="pure-u-1">
+                <div id="loggedin-menu"><a href="{% url "edit" %}">Edit your page</a> <a href="{% url "logout" %}">Logout</a></div>
+                </div>
+            {% else %}
+            <div class="pure-u-1">
+                <div id="login-link">Quitting too? Want your own page? <a href="#" id="signup">Sign up</a> - <a href="#" id="login">Log in</a></div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="pure-g-r">
+            <div class="pure-u-1">
+                <div id="signup-box">
+                    <form class="pure-form" action="{% url "signup" %}" method="post">
+                    {% csrf_token %}
+                    {{ signup_form.email }}
+                    <input type="submit" value="Signup"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="pure-g-r">
+            <div class="pure-u-1">
+                <div id="login-box">
+                    <form class="pure-form" action="{% url "login" %}" method="post">
+                    {% csrf_token %}
+                    {{ login_form.email }} {{ login_form.password }}
+                    <input type="submit" value="Login"/>
+                    </form>
+                </div>
+            </div>
+        </div>
         {% block content %}
         {% endblock %}
         <div class="pure-g-r">
@@ -30,5 +63,20 @@
             </div>
         </div>
         </div>
+        <script type="text/javascript">
+        $('#signup').click(function(e){
+            e.preventDefault();
+            $('#login-box').slideUp(function(){
+                $('#signup-box').slideToggle();
+            });
+        });
+
+        $('#login').click(function(e){
+            e.preventDefault();
+            $('#signup-box').slideUp(function(){
+                $('#login-box').slideToggle();
+            });
+        });
+        </script>
     </body>
 </html>
