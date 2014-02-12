@@ -26,6 +26,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['localhost:10001']
 SITENAME = "Help Me Quit"
+ADMINS = (('Francois Gaudin', 'contact@helpmequ.it'),)
 
 # Application definition
 
@@ -70,6 +71,15 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
+                               "django.core.context_processors.debug",
+                               "django.core.context_processors.i18n",
+                               "django.core.context_processors.media",
+                               "django.core.context_processors.static",
+                               "django.core.context_processors.tz",
+                               "django.contrib.messages.context_processors.messages",
+                               "context_processors.settings_variables")
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
