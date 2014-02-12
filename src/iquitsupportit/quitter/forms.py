@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import SetPasswordForm as DjangoSetPasswordForm
-from quitter.models import Profile
+from quitter.models import Profile, Beneficiary
 from django.contrib.auth.models import User
 
 
@@ -44,3 +44,9 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['user', 'hash']
+
+
+class BeneficiaryForm(forms.ModelForm):
+    class Meta:
+        model = Beneficiary
+        exclude = ['quitter']

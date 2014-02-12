@@ -272,4 +272,7 @@ body {
 #edit-box {
     margin: 20px;
 }
+#edit-box fieldset {
+    margin-top: 35px;
+}
 /* END EDIT BOX */

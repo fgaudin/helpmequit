@@ -1,9 +1,9 @@
 from django.shortcuts import get_object_or_404, render_to_response, redirect
-from quitter.models import Profile
+from quitter.models import Profile, Beneficiary
 from django.template.context import RequestContext
 from supporter.forms import PledgeForm
 from quitter.forms import SignupForm, LoginForm, SetPasswordForm, ProfileForm, \
-    UserForm
+    UserForm, BeneficiaryForm
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.utils.translation import gettext_lazy as _
@@ -16,6 +16,7 @@ from django.contrib.auth import login as auth_login, authenticate, logout as aut
 import uuid
 from django.db.transaction import commit_on_success
 from django.contrib.auth.decorators import login_required
+from django.http.response import HttpResponse
 
 
 def index(request, slug=None):
@@ -147,6 +148,9 @@ def edit(request):
     password_form = SetPasswordForm(user=request.user)
     user_form = UserForm(instance=request.user)
     profile_form = ProfileForm(instance=request.user.profile)
+    profile_form.fields['current_beneficiary'].queryset = Beneficiary.objects.filter(quitter_id=request.user.id)
+    beneficiary_form = BeneficiaryForm(prefix='existing', instance=request.user.profile.current_beneficiary)
+    new_beneficiary_form = BeneficiaryForm(prefix='new')
 
     if request.method == 'POST':
         if request.POST.get('update_password'):
@@ -158,16 +162,43 @@ def edit(request):
         elif request.POST.get('update'):
             user_form = UserForm(request.POST, instance=request.user)
             profile_form = ProfileForm(request.POST, instance=request.user.profile)
-            if user_form.is_valid() and profile_form.is_valid():
+            beneficiary_form = BeneficiaryForm(request.POST, prefix='existing', instance=request.user.profile.current_beneficiary)
+            new_beneficiary_form = BeneficiaryForm(request.POST, prefix='new')
+
+            if user_form.is_valid() and profile_form.is_valid() and \
+                (beneficiary_form.is_valid() or new_beneficiary_form.is_valid()):
+
                 user_form.save()
-                profile_form.save()
+                profile = profile_form.save(commit=False)
+                if new_beneficiary_form.is_valid():
+                    beneficiary = new_beneficiary_form.save(commit=False)
+                    beneficiary.quitter = request.user
+                    beneficiary.save()
+                    profile.current_beneficiary = beneficiary
+                elif beneficiary_form.is_valid():
+                    beneficiary = beneficiary_form.save(commit=False)
+                    beneficiary.id = profile.current_beneficiary_id
+                    beneficiary.save()
+
+                profile.save()
                 messages.success(request, _('Your page has been updated successfully'))
                 return redirect(reverse('user', kwargs={'slug': request.user.profile.slug}))
 
     context['password_form'] = password_form
     context['user_form'] = user_form
     context['profile_form'] = profile_form
+    context['beneficiary_form'] = beneficiary_form
+    context['new_beneficiary_form'] = new_beneficiary_form
 
     return render_to_response('edit.html',
                               context,
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def beneficiary_form(request, id):
+    beneficiary = get_object_or_404(Beneficiary, pk=id, quitter=request.user)
+    beneficiary_form = BeneficiaryForm(prefix='existing', instance=beneficiary)
+    return render_to_response('beneficiary_form.html',
+                              {'form': beneficiary_form},
                               context_instance=RequestContext(request))

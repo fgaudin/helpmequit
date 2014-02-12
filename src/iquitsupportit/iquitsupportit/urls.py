@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^me$', 'quitter.views.me', name='me'),
     url(r'^me/edit', 'quitter.views.edit', name="edit"),
     url(r'^u/(?P<slug>[\w\d\.]+)/$', 'quitter.views.index', name='user'),
-    url(r'^pledge/', include('supporter.urls')),
+    url(r'^b/(?P<id>\d+)/form/$', 'quitter.views.beneficiary_form', name='beneficiary_form'),
+    url(r'^p/', include('supporter.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

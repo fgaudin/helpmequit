@@ -99,7 +99,7 @@ class Beneficiary(models.Model):
     donate_url = models.URLField()
 
     def __unicode__(self):
-        return "%s (%s)" % (self.name, self.quitter)
+        return u"%s" % (self.name)
 
     def clone(self, user):
         return self.__class__.objects.create(quitter=user,
