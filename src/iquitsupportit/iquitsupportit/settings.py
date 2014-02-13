@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_extensions',
     'south',
+    'storages',
     'quitter',
     'supporter',
     'donation',
@@ -124,3 +125,8 @@ DEFAULT_PROFILE = 'francois'
 
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
                            'auth.backends.TokenBackend',)
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAJZHQWOAUZLNWQ7KQ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'helpmequit-users'

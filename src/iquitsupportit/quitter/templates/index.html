@@ -25,11 +25,11 @@
 </div>
 <div class="pure-g-r">
     <div class="pure-u-1">
-        <div id="beneficiary-box">
+        <div id="beneficiary-box" class="{{ profile.current_beneficiary.banner_font_theme }} " {% if profile.current_beneficiary.banner %} style="background: url({{profile.current_beneficiary.banner.url}})" {% endif %}>
              <div id="beneficiary"><a href="{{ profile.current_beneficiary.url }}" target="_blank">{{ profile.current_beneficiary.name }}</a></div>
              with your help, I've raised
              <div id="total-amount">${{ profile.total_amount|floatformat:"0" }}</div>
-             <div id="copyright">&copy;{{ profile.current_beneficiary.name }}</div>
+             <div id="copyright">{% if profile.current_beneficiary.banner_copyright %}&copy;{{ profile.current_beneficiary.banner_copyright }}{% endif %}</div>
         </div>
     </div>
 </div>
@@ -97,7 +97,7 @@
         <div id="info-box">
             <h1>Share</h1>
             <div id="help">Help me, help them</div>
-            <div id="logo"><a href="{{ profile.current_beneficiary.url }}" target="_blank"><img src="{% static "img/logo.gif" %}" /></a></div>
+            <div id="logo">{% if profile.current_beneficiary.logo %}<a href="{{ profile.current_beneficiary.url }}" target="_blank"><img src="{{ profile.current_beneficiary.logo.url }}" /></a>{% endif %}</div>
             <div id="spread">Spread the word</div>
             <div id="share-buttons">
                 <span class='st_facebook_large' displayText='Facebook'></span>

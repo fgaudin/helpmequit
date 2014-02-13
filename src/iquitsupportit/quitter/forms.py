@@ -43,7 +43,7 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user', 'hash']
+        exclude = ['user', 'hash', 'video_snippet']
 
 
 class BeneficiaryForm(forms.ModelForm):

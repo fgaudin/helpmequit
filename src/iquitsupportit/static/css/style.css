@@ -150,9 +150,14 @@ body {
     margin-top: 20px;
     text-align: center;
     font-size: 1.5em;
-    background: url("/static/img/shinda.jpg");
-    color: #FFF;
     font-weight: bold;
+}
+#beneficiary-box, #beneficiary-box a {
+    color: #000;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
+}
+#beneficiary-box.light, #beneficiary-box.light a {
+    color: #FFF;
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.7);
 }
 #beneficiary {
@@ -162,7 +167,6 @@ body {
 
 #beneficiary a {
     text-decoration: none;
-    color: #FFF;
 }
 #beneficiary a:hover{
    text-decoration: underline;

@@ -162,8 +162,8 @@ def edit(request):
         elif request.POST.get('update'):
             user_form = UserForm(request.POST, instance=request.user)
             profile_form = ProfileForm(request.POST, instance=request.user.profile)
-            beneficiary_form = BeneficiaryForm(request.POST, prefix='existing', instance=request.user.profile.current_beneficiary)
-            new_beneficiary_form = BeneficiaryForm(request.POST, prefix='new')
+            beneficiary_form = BeneficiaryForm(request.POST, request.FILES, prefix='existing', instance=request.user.profile.current_beneficiary)
+            new_beneficiary_form = BeneficiaryForm(request.POST, request.FILES, prefix='new')
 
             if user_form.is_valid() and profile_form.is_valid() and \
                 (beneficiary_form.is_valid() or new_beneficiary_form.is_valid()):

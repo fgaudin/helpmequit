@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 from django.db.models.aggregates import Sum
 from django.conf import settings
-from django.contrib.auth.hashers import make_password
 import hashlib
+from django.utils.translation import gettext_lazy as _
 
 
 class ProfileManager(models.Manager):
@@ -97,6 +97,12 @@ class Beneficiary(models.Model):
     name = models.CharField(max_length=255)
     url = models.URLField()
     donate_url = models.URLField()
+    banner = models.ImageField(upload_to='b/banner', null=True, blank=True)
+    banner_font_theme = models.CharField(max_length=10,
+                                         choices=(('', _('dark')), ('light', _('light'))),
+                                         default='')
+    banner_copyright = models.CharField(max_length=255, blank=True, default='')
+    logo = models.ImageField(upload_to='b/logo', null=True, blank=True)
 
     def __unicode__(self):
         return u"%s" % (self.name)
