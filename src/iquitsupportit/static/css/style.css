@@ -276,6 +276,14 @@ body {
 #edit-box {
     margin: 20px;
 }
+
+#edit-box ul.errorlist {
+    color: rgb(202, 60, 60);
+    list-style-type: none;
+    font-size: 0.9em;
+    padding-left: 11em;
+}
+
 #password-box fieldset, #edit-box fieldset {
     margin-top: 15px;
 }
