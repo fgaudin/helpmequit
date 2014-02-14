@@ -2,7 +2,9 @@
     {{ hidden }}
 {% endfor %}
 {% for field in form.visible_fields %}
+    <div class="pure-control-group">
     {{ field.label_tag }}
     {{ field }}
     {{ field.errors }}
+    </div>
 {% endfor %}

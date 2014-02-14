@@ -47,8 +47,16 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         exclude = ['user', 'hash', 'video_embed_url']
 
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['picture'].widget.template_with_initial = u'%(input)s<br /><label></label>%(initial)s %(clear_template)s'
 
 class BeneficiaryForm(forms.ModelForm):
     class Meta:
         model = Beneficiary
         exclude = ['quitter']
+
+    def __init__(self, *args, **kwargs):
+        super(BeneficiaryForm, self).__init__(*args, **kwargs)
+        self.fields['banner'].widget.template_with_initial = u'%(input)s<br /><label></label>%(initial)s %(clear_template)s'
+        self.fields['logo'].widget.template_with_initial = u'%(input)s<br /><label></label>%(initial)s %(clear_template)s'

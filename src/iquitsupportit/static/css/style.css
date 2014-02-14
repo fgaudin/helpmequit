@@ -22,7 +22,6 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    margin-bottom: 20px;
 }
 
 .messages li {
@@ -286,12 +285,17 @@ body {
     color: #666;
 }
 #edit-box label {
-    font-size: 1.1em;
+    /*font-size: 1.1em;*/
 }
 #edit-box input, #edit-box select, #edit-box textarea {
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
 }
-input[type="checkbox"] + label {
+.pure-form-aligned .pure-control-group input[type="checkbox"] + label {
     display: inline-block;
+    width: inherit;
+}
+#edit-box a {
+    font-size: 0.9em;
+    color: #666;
 }
 /* END EDIT BOX */

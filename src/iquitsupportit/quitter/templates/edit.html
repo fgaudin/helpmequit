@@ -28,89 +28,115 @@
 <div class="pure-g-r">
     <div class="pure-u-1">
         <div id="edit-box">
-            <form class="pure-form pure-form-stacked" action="" method="post" enctype="multipart/form-data">
+            <form class="pure-form pure-form-aligned" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset>
                 <legend>Profile</legend>
                 <div class="pure-g-r">
-                    <div class="pure-u-1-3">
+                    <div class="pure-u-1">
+                        <div class="pure-control-group">
                         {{ user_form.first_name.label_tag }}
                         {{ user_form.first_name }}
                         {{ user_form.first_name.errors }}
-                    </div>
-                    <div class="pure-u-2-3">
+                        </div>
+                        <div class="pure-control-group">
                         {{ profile_form.slug.label_tag }}
                         {{ profile_form.slug }}
                         {{ profile_form.slug.errors }}
+                        </div>
                     </div>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Settings</legend>
                 <div class="pure-g-r">
-                    <div class="pure-u-1-3">
+                    <div class="pure-u-1-2">
+                        <div class="pure-control-group">
                         {{ profile_form.quit_date.label_tag }}
                         {{ profile_form.quit_date }}
                         {{ profile_form.quit_date.errors }}
-                    </div>
-                    <div class="pure-u-1-3">
+                        </div>
+                        <div class="pure-control-group">
                         {{ profile_form.cigarettes_per_day.label_tag }}
                         {{ profile_form.cigarettes_per_day }}
                         {{ profile_form.cigarettes_per_day.errors }}
-                    </div>
-                    <div class="pure-u-1-3">
+                        </div>
+                        <div class="pure-control-group">
                         {{ profile_form.pack_price.label_tag }}
                         {{ profile_form.pack_price }}
                         {{ profile_form.pack_price.errors }}
+                        </div>
                     </div>
-                </div>
-                <div class="pure-g-r">
-                    <div class="pure-u-1-3">
+                    <div class="pure-u-1-2">
+                        <div class="pure-control-group">
                         {{ profile_form.pack_size.label_tag }}
                         {{ profile_form.pack_size }}
                         {{ profile_form.pack_size.errors }}
-                    </div>
-                    <div class="pure-u-1-3">
+                        </div>
+                        <div class="pure-control-group">
                         {{ profile_form.donation_percentage.label_tag }}
                         {{ profile_form.donation_percentage }}
                         {{ profile_form.donation_percentage.errors }}
+                        </div>
                     </div>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Charity</legend>
                 <div class="pure-g-r">
-                    <div class="pure-u-5-8">
+                    <div class="pure-u-1-2">
+                        <div class="pure-control-group">
                         {{ profile_form.current_beneficiary.label_tag }}
                         {{ profile_form.current_beneficiary }}
                         {{ profile_form.current_beneficiary.errors }}
+                        </div>
+                        <br />
                         <div id="beneficiary-form">
-                        {{ beneficiary_form }}
+                        {% with beneficiary_form as form %}
+                        {% include "beneficiary_form.html" %}
+                        {% endwith %}
                         </div>
                     </div>
-                    <div class="pure-u-3-8">
-                        <p><em>Or create a new one</em></p>
-                        {{ new_beneficiary_form }}
+                    <div class="pure-u-1-2">
+                        <div><em>Or create a new one</em></div>
+                        <br />
+                        <br />
+                        {% with new_beneficiary_form as form %}
+                        {% include "beneficiary_form.html" %}
+                        {% endwith %}
                     </div>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Testimony</legend>
                 <div class="pure-g-r">
-                    <div class="pure-u-1-2">
-                        {{ profile_form.testimony.label_tag }}
+                    <div class="pure-u-2-5">
+                        <div class="pure-control-group">
                         {{ profile_form.testimony }}
                         {{ profile_form.testimony.errors }}
+                        </div>
                     </div>
-                    <div class="pure-u-1-2">
-                        <div id="current-video">Currently: <a href="{{ user.profile.video_embed_url }}">{{ user.profile.video_embed_url }}</a></div>
+                    <div class="pure-u-3-5">
+                        <div class="pure-control-group">
                         {{ profile_form.video_url.label_tag }}
                         {{ profile_form.video_url }}
                         {{ profile_form.video_url.errors }}
-                        <p>or</p>
+                        </div>
+                        {% if user.profile.video_embed_url %}
+                        <div class="pure-control-group">
+                            <div id="current-video">
+                            <label></label><a href="{{ user.profile.video_embed_url }}" target="_blank">{{ user.profile.video_embed_url }}</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="pure-control-group">
+                        <label>or</label>
+                        </div>
+                        <div class="pure-control-group">
                         {{ profile_form.picture.label_tag }}
                         {{ profile_form.picture }}
                         {{ profile_form.picture.errors }}
+                        </div>
                     </div>
                 </div>
             </fieldset>
