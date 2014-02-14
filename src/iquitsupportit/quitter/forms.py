@@ -41,9 +41,11 @@ class UserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    video_url = forms.URLField(required=False)
+
     class Meta:
         model = Profile
-        exclude = ['user', 'hash', 'video_snippet']
+        exclude = ['user', 'hash', 'video_embed_url']
 
 
 class BeneficiaryForm(forms.ModelForm):

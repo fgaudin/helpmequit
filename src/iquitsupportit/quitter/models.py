@@ -36,8 +36,9 @@ class Profile(models.Model):
     donation_percentage = models.PositiveIntegerField(default=100)
     current_beneficiary = models.ForeignKey('Beneficiary')
     testimony = models.TextField()
-    video_snippet = models.TextField()
     hash = models.CharField(max_length=128, null=True, blank=True)
+    video_embed_url = models.URLField(null=True, blank=True)
+    picture = models.ImageField(upload_to='u/pic', null=True, blank=True)
 
     objects = ProfileManager()
 
@@ -100,6 +101,7 @@ class Beneficiary(models.Model):
     banner = models.ImageField(upload_to='b/banner', null=True, blank=True)
     banner_font_theme = models.CharField(max_length=10,
                                          choices=(('', _('dark')), ('light', _('light'))),
+                                         blank=True,
                                          default='')
     banner_copyright = models.CharField(max_length=255, blank=True, default='')
     logo = models.ImageField(upload_to='b/logo', null=True, blank=True)

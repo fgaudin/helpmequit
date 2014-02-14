@@ -16,7 +16,8 @@ from django.contrib.auth import login as auth_login, authenticate, logout as aut
 import uuid
 from django.db.transaction import commit_on_success
 from django.contrib.auth.decorators import login_required
-from django.http.response import HttpResponse
+import requests
+from bs4 import BeautifulSoup
 
 
 def index(request, slug=None):
@@ -161,7 +162,7 @@ def edit(request):
                 return redirect(reverse('edit'))
         elif request.POST.get('update'):
             user_form = UserForm(request.POST, instance=request.user)
-            profile_form = ProfileForm(request.POST, instance=request.user.profile)
+            profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
             beneficiary_form = BeneficiaryForm(request.POST, request.FILES, prefix='existing', instance=request.user.profile.current_beneficiary)
             new_beneficiary_form = BeneficiaryForm(request.POST, request.FILES, prefix='new')
 
@@ -179,6 +180,21 @@ def edit(request):
                     beneficiary = beneficiary_form.save(commit=False)
                     beneficiary.id = profile.current_beneficiary_id
                     beneficiary.save()
+
+                if profile_form.cleaned_data['video_url']:
+                    response = requests.get(profile_form.cleaned_data['video_url'])
+                    soup = BeautifulSoup(response.text, 'lxml')
+                    tag = soup.find('meta', {'name': 'twitter:player'})
+                    if tag and 'content' in tag.attrs:
+                        profile.video_embed_url = tag.attrs['content']
+                    elif tag and 'value' in tag.attrs:
+                        profile.video_embed_url = tag.attrs['value']
+                    else:
+                        messages.warning(request, _("The url doesn't contain any video"))
+                    if profile.video_embed_url:
+                        profile.picture = None
+                elif profile.picture:
+                    profile.video_embed_url = None
 
                 profile.save()
                 messages.success(request, _('Your page has been updated successfully'))

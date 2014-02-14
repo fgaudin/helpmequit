@@ -32,7 +32,7 @@
             {% csrf_token %}
             <fieldset>
                 <legend>Profile</legend>
-                <div class="pure-g">
+                <div class="pure-g-r">
                     <div class="pure-u-1-3">
                         {{ user_form.first_name.label_tag }}
                         {{ user_form.first_name }}
@@ -47,7 +47,7 @@
             </fieldset>
             <fieldset>
                 <legend>Settings</legend>
-                <div class="pure-g">
+                <div class="pure-g-r">
                     <div class="pure-u-1-3">
                         {{ profile_form.quit_date.label_tag }}
                         {{ profile_form.quit_date }}
@@ -64,7 +64,7 @@
                         {{ profile_form.pack_price.errors }}
                     </div>
                 </div>
-                <div class="pure-g">
+                <div class="pure-g-r">
                     <div class="pure-u-1-3">
                         {{ profile_form.pack_size.label_tag }}
                         {{ profile_form.pack_size }}
@@ -79,7 +79,7 @@
             </fieldset>
             <fieldset>
                 <legend>Charity</legend>
-                <div class="pure-g">
+                <div class="pure-g-r">
                     <div class="pure-u-5-8">
                         {{ profile_form.current_beneficiary.label_tag }}
                         {{ profile_form.current_beneficiary }}
@@ -96,16 +96,21 @@
             </fieldset>
             <fieldset>
                 <legend>Testimony</legend>
-                <div class="pure-g">
+                <div class="pure-g-r">
                     <div class="pure-u-1-2">
                         {{ profile_form.testimony.label_tag }}
                         {{ profile_form.testimony }}
                         {{ profile_form.testimony.errors }}
                     </div>
                     <div class="pure-u-1-2">
-                        {{ profile_form.video_snippet.label_tag }}
-                        {{ profile_form.video_snippet }}
-                        {{ profile_form.video_snippet.errors }}
+                        <div id="current-video">{{ user.profile.video_embed_url }}</div>
+                        {{ profile_form.video_url.label_tag }}
+                        {{ profile_form.video_url }}
+                        {{ profile_form.video_url.errors }}
+                        <p>or</p>
+                        {{ profile_form.picture.label_tag }}
+                        {{ profile_form.picture }}
+                        {{ profile_form.picture.errors }}
                     </div>
                 </div>
             </fieldset>

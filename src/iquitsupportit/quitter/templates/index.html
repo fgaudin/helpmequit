@@ -41,9 +41,13 @@
     </div>
     <div class="pure-u-2-5">
         <div id="media-box">
-            {% autoescape off %}
-            {{ profile.video_snippet }}
-            {% endautoescape %}
+            {% if profile.video_embed_url %}
+            <iframe src="{{ profile.video_embed_url }}" width="360" height="243" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            {% else %}
+                {% if profile.picture %}
+                <img src="{{ profile.picture.url }}" />
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 </div>
