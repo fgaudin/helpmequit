@@ -52,29 +52,27 @@ body {
     text-align: center;
 }
 
-#login-link {
-    text-align: right;
-    padding-bottom: 20px;
-    padding-right: 10px;
-}
-
-#signup-box {
+#signup-box, #login-box {
     display: none;
-    text-align: right;
-    padding-right: 10px;
-    padding-bottom:20px;
+    margin-bottom: 15px;
 }
 
-#login-box {
-    display: none;
-    text-align: right;
-    padding-right: 10px;
-    padding-bottom:20px;
+.header {
+    text-align: center;
 }
-
-#loggedin-menu {
-    text-align: right;
-    padding-right: 10px;
+.menu {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    background: #EEE;
+    border-radius:0px 0px 8px 8px;
+    font-size: 0.8em;
+}
+.menu a, .menu a:active,
+.menu a:visited, .menu a:hover{
+    text-decoration: none;
+    margin: 0 15px;
+    color: #666;
 }
 
 /* HELLO BOX */
@@ -279,7 +277,21 @@ body {
 #edit-box {
     margin: 20px;
 }
-#edit-box fieldset {
-    margin-top: 35px;
+#password-box fieldset, #edit-box fieldset {
+    margin-top: 15px;
+}
+#password-box legend, #edit-box legend {
+    font-size: 160%;
+    font-weight: bold;
+    color: #666;
+}
+#edit-box label {
+    font-size: 1.1em;
+}
+#edit-box input, #edit-box select, #edit-box textarea {
+    margin-bottom: 20px;
+}
+input[type="checkbox"] + label {
+    display: inline-block;
 }
 /* END EDIT BOX */

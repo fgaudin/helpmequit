@@ -103,7 +103,7 @@
                         {{ profile_form.testimony.errors }}
                     </div>
                     <div class="pure-u-1-2">
-                        <div id="current-video">{{ user.profile.video_embed_url }}</div>
+                        <div id="current-video">Currently: <a href="{{ user.profile.video_embed_url }}">{{ user.profile.video_embed_url }}</a></div>
                         {{ profile_form.video_url.label_tag }}
                         {{ profile_form.video_url }}
                         {{ profile_form.video_url.errors }}
