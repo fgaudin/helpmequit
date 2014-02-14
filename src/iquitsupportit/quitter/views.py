@@ -146,13 +146,6 @@ def logout(request):
 def edit(request):
     context = {}
 
-    password_form = SetPasswordForm(user=request.user)
-    user_form = UserForm(instance=request.user)
-    profile_form = ProfileForm(instance=request.user.profile)
-    profile_form.fields['current_beneficiary'].queryset = Beneficiary.objects.filter(quitter_id=request.user.id)
-    beneficiary_form = BeneficiaryForm(prefix='existing', instance=request.user.profile.current_beneficiary)
-    new_beneficiary_form = BeneficiaryForm(prefix='new')
-
     if request.method == 'POST':
         if request.POST.get('update_password'):
             password_form = SetPasswordForm(request.user, request.POST)
@@ -163,14 +156,14 @@ def edit(request):
         elif request.POST.get('update'):
             user_form = UserForm(request.POST, instance=request.user)
             profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-            beneficiary_form = BeneficiaryForm(request.POST, request.FILES, prefix='existing', instance=request.user.profile.current_beneficiary)
-            new_beneficiary_form = BeneficiaryForm(request.POST, request.FILES, prefix='new')
 
-            if user_form.is_valid() and profile_form.is_valid() and \
-                (beneficiary_form.is_valid() or new_beneficiary_form.is_valid()):
+            if user_form.is_valid() and profile_form.is_valid():
+                beneficiary_form = BeneficiaryForm(request.POST, request.FILES, prefix='existing', instance=request.user.profile.current_beneficiary)
+                new_beneficiary_form = BeneficiaryForm(request.POST, request.FILES, prefix='new')
 
                 user_form.save()
                 profile = profile_form.save(commit=False)
+
                 if new_beneficiary_form.is_valid():
                     beneficiary = new_beneficiary_form.save(commit=False)
                     beneficiary.quitter = request.user
@@ -199,6 +192,13 @@ def edit(request):
                 profile.save()
                 messages.success(request, _('Your page has been updated successfully'))
                 return redirect(reverse('user', kwargs={'slug': request.user.profile.slug}))
+    else:
+        password_form = SetPasswordForm(user=request.user)
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+        profile_form.fields['current_beneficiary'].queryset = Beneficiary.objects.filter(quitter_id=request.user.id)
+        beneficiary_form = BeneficiaryForm(prefix='existing', instance=request.user.profile.current_beneficiary)
+        new_beneficiary_form = BeneficiaryForm(prefix='new')
 
     context['password_form'] = password_form
     context['user_form'] = user_form

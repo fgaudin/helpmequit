@@ -236,6 +236,17 @@ body {
     padding-right:100px;
     text-align: right;
 }
+
+#pledge-result{
+    display: none;
+}
+#pledge-result .message {
+    padding: 10px;
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background: rgb(223, 117, 20);
+}
 /* END DONATIONS BOX*/
 
 /* SHARE BOX */
