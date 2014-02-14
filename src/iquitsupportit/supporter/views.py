@@ -16,6 +16,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.mail.message import EmailMultiAlternatives
+from django.template.context import RequestContext
 
 
 @csrf_exempt
@@ -53,8 +54,12 @@ def pledge_create(request, beneficiary_id):
                    'days': pledge.days,
                    'url': url,
                    'quitter': pledge.beneficiary.quitter.first_name}
-        text_content = render_to_string(template_text, context)
-        html_content = render_to_string(template_html, context)
+        text_content = render_to_string(template_text,
+                                        context,
+                                        context_instance=RequestContext(request))
+        html_content = render_to_string(template_html,
+                                        context,
+                                        context_instance=RequestContext(request))
 
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")

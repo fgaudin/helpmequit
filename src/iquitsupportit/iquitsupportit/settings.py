@@ -109,15 +109,15 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-DEFAULT_FROM_EMAIL = 'contact@iquitsupport.us'
+DEFAULT_FROM_EMAIL = 'Help Me Quit <contact@helpmequ.it>'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 
-# EMAIL_HOST = 'mail.gandi.net'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'contact@iquitsupport.us'
-# EMAIL_HOST_PASSWORD = 'D.H2;c[X3j]cy_LV#D7D]`"ZQKf#d\'ha'
-# EMAIL_USE_TLS = True
+EMAIL_HOST = 'mail.gandi.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'contact@helpmequ.it'
+EMAIL_HOST_PASSWORD = 'W|X<pud!j:oW17R7`6E,8GVT'
+EMAIL_USE_TLS = True
 
 EMAIL_SIGNATURE = 'The Help Me Quit Team'
 
@@ -129,4 +129,4 @@ AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAJZHQWOAUZLNWQ7KQ'
 AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'helpmequit-users'
+AWS_STORAGE_BUCKET_NAME = 'test-helpmequit-users'

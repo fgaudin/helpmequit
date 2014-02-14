@@ -10,3 +10,5 @@ Follow these two steps and you're done:
 - Confirm your donation here: {{ url }}
 
 A big thank you!
+
+{{ signature }}
