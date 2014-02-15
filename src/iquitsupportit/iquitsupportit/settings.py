@@ -112,12 +112,14 @@ STATICFILES_DIRS = (
 DEFAULT_FROM_EMAIL = 'Help Me Quit <contact@helpmequ.it>'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
+EMAIL_DEBUG = True
 
-EMAIL_HOST = 'mail.gandi.net'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'contact@helpmequ.it'
-EMAIL_HOST_PASSWORD = 'W|X<pud!j:oW17R7`6E,8GVT'
-EMAIL_USE_TLS = True
+if not EMAIL_DEBUG:
+    EMAIL_HOST = 'mail.gandi.net'
+    EMAIL_PORT = 587
+    EMAIL_HOST_USER = 'contact@helpmequ.it'
+    EMAIL_HOST_PASSWORD = 'W|X<pud!j:oW17R7`6E,8GVT'
+    EMAIL_USE_TLS = True
 
 EMAIL_SIGNATURE = 'The Help Me Quit Team'
 

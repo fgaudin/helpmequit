@@ -5,6 +5,8 @@ from django.db.models.aggregates import Sum
 from django.conf import settings
 import hashlib
 from django.utils.translation import gettext_lazy as _
+import os
+import uuid
 
 
 class ProfileManager(models.Manager):
@@ -26,6 +28,13 @@ class ProfileManager(models.Manager):
                            hash=hashlib.sha1(str(hash)).hexdigest())
 
 
+def get_profile_upload_path(instance, filename):
+    return os.path.join('u',
+                        '%d' % instance.user.id,
+                        'pic',
+                        '%s_%s' % (uuid.uuid4(), filename))
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User)
     slug = models.CharField(max_length=255, unique=True)
@@ -38,7 +47,7 @@ class Profile(models.Model):
     testimony = models.TextField()
     hash = models.CharField(max_length=128, null=True, blank=True)
     video_embed_url = models.URLField(null=True, blank=True)
-    picture = models.ImageField(upload_to='u/pic', null=True, blank=True)
+    picture = models.ImageField(upload_to=get_profile_upload_path, null=True, blank=True)
 
     objects = ProfileManager()
 
@@ -93,18 +102,32 @@ class Profile(models.Model):
         self.hash = hashlib.sha1(str(hash)).hexdigest()
 
 
+def get_banner_upload_path(instance, filename):
+    return os.path.join('u',
+                        '%d' % instance.quitter.id,
+                        'banner',
+                        '%s_%s' % (uuid.uuid4(), filename))
+
+
+def get_logo_upload_path(instance, filename):
+    return os.path.join('u',
+                        '%d' % instance.quitter.id,
+                        'logo',
+                        '%s_%s' % (uuid.uuid4(), filename))
+
+
 class Beneficiary(models.Model):
     quitter = models.ForeignKey(User)
     name = models.CharField(max_length=255)
     url = models.URLField()
     donate_url = models.URLField()
-    banner = models.ImageField(upload_to='b/banner', null=True, blank=True)
+    banner = models.ImageField(upload_to=get_banner_upload_path, null=True, blank=True)
     banner_font_theme = models.CharField(max_length=10,
                                          choices=(('', _('dark')), ('light', _('light'))),
                                          blank=True,
                                          default='')
     banner_copyright = models.CharField(max_length=255, blank=True, default='')
-    logo = models.ImageField(upload_to='b/logo', null=True, blank=True)
+    logo = models.ImageField(upload_to=get_logo_upload_path, null=True, blank=True)
 
     def __unicode__(self):
         return u"%s" % (self.name)

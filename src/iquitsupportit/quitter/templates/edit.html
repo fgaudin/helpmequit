@@ -3,27 +3,6 @@
 
 {% block title %}Edit your profile{% endblock %}
 {% block content %}
-<div class="pure-g-r">
-    <div class="pure-u-1">
-        <div id="password-box">
-            <form class="pure-form" action="" method="post">
-                {% csrf_token %}
-                <fieldset>
-                    <legend>
-                    {% if user.has_usable_password %}
-                    Update your password
-                    {% else %}
-                    Set your password
-                    {% endif %}
-                    </legend>
-                    {{ password_form.new_password1 }} {{ password_form.new_password1.errors }}
-                    {{ password_form.new_password2 }} {{ password_form.new_password2.errors }}
-                </fieldset>
-                <p><input type="submit" name="update_password" value="Update password" /></p>
-            </form>
-        </div>
-    </div>
-</div>
 {% if user.has_usable_password %}
 <div class="pure-g-r">
     <div class="pure-u-1">
@@ -153,4 +132,25 @@ $('#id_current_beneficiary').change(function(e){
 });
 </script>
 {% endif %}
+<div class="pure-g-r">
+    <div class="pure-u-1">
+        <div id="password-box">
+            <form class="pure-form" action="" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>
+                    {% if user.has_usable_password %}
+                    Update your password
+                    {% else %}
+                    Set your password
+                    {% endif %}
+                    </legend>
+                    {{ password_form.new_password1 }} {{ password_form.new_password1.errors }}
+                    {{ password_form.new_password2 }} {{ password_form.new_password2.errors }}
+                </fieldset>
+                <p><input type="submit" name="update_password" value="Update password" /></p>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
