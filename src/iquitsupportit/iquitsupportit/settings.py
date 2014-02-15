@@ -112,7 +112,7 @@ STATICFILES_DIRS = (
 DEFAULT_FROM_EMAIL = 'Help Me Quit <contact@helpmequ.it>'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
-EMAIL_DEBUG = True
+EMAIL_DEBUG = False
 
 if not EMAIL_DEBUG:
     EMAIL_HOST = 'mail.gandi.net'

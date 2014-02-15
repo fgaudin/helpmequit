@@ -23,8 +23,9 @@ class ProfileManager(models.Manager):
                            pack_size=20,
                            donation_percentage=100,
                            current_beneficiary=beneficiary,
-                           testimony='Lorem ipsum',
-                           video_snippet='test',
+                           testimony='Write your testimony here!',
+                           video_embed_url=default_profile.video_embed_url,
+                           picture=default_profile.picture,
                            hash=hashlib.sha1(str(hash)).hexdigest())
 
 
@@ -136,4 +137,8 @@ class Beneficiary(models.Model):
         return self.__class__.objects.create(quitter=user,
                                              name=self.name,
                                              url=self.url,
-                                             donate_url=self.donate_url)
+                                             donate_url=self.donate_url,
+                                             banner=self.banner,
+                                             banner_font_theme=self.banner_font_theme,
+                                             banner_copyright=self.banner_copyright,
+                                             logo=self.logo)

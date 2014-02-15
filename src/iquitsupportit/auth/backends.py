@@ -9,6 +9,7 @@ class TokenBackend(object):
                 user = User.objects.get(profile__hash=hashlib.sha1(token).hexdigest())
                 user.hash = None
                 user.save()
+                return user
             except User.DoesNotExist:
                 return None
         return None

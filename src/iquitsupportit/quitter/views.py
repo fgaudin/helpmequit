@@ -44,6 +44,7 @@ def me(request):
     return redirect(reverse('user', kwargs={'slug': request.user.profile.slug}))
 
 
+@commit_on_success
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -81,7 +82,7 @@ def signup(request):
                 hash = uuid.uuid4()
                 profile = Profile.objects.create_profile(user, hash)
                 send_email = True
-                messages.info(request, _('You will receive an email shortly with a link to confirm your signup.'))
+                messages.info(request, _('An email has been sent to %s with a link to confirm your signup.') % (user.email))
 
             if send_email:
                 template_html = 'signup/email.html'
@@ -108,10 +109,12 @@ def signup(request):
     return redirect(request.META['HTTP_REFERER'] if 'HTTP_REFERER' in request.META else 'home')
 
 
+@commit_on_success
 def confirm_signup(request, hash):
     user = authenticate(token=hash)
     if user is not None:
         auth_login(request, user)
+        return redirect(reverse('edit'))
     else:
         messages.error(request, _('Hash invalid'))
 
