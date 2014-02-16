@@ -12,7 +12,8 @@ def tag(message='Deployment'):
     previous_tag = local('git tag | sort -n | tail -1', capture=True) or '0'
     new_tag = 'v%d' % (int(previous_tag.lstrip('v')) + 1)
     local('git tag -a %s -m "%s"' % (new_tag, message))
-    local('git push origin %s' % new_tag)
+    local('git push')
+    local('git push --tags')
     return new_tag
 
 def pull(tag):
@@ -32,8 +33,8 @@ def reload():
     pass
 
 def deploy():
-    tag = tag()
-    pull(tag)
+    deploy_tag = tag()
+    pull(deploy_tag)
     requirements()
     migrate()
     reload()
