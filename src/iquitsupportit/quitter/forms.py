@@ -51,6 +51,7 @@ class ProfileForm(forms.ModelForm):
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['picture'].widget.template_with_initial = u'%(input)s<br /><label></label>%(initial)s %(clear_template)s'
 
+
 class BeneficiaryForm(forms.ModelForm):
     class Meta:
         model = Beneficiary

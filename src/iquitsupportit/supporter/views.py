@@ -53,7 +53,7 @@ def pledge_create(request, beneficiary_id):
         context = {'amount': pledge.amount,
                    'days': pledge.days,
                    'url': url,
-                   'quitter': pledge.beneficiary.quitter.first_name}
+                   'quitter': pledge.beneficiary.quitter}
         text_content = render_to_string(template_text,
                                         context,
                                         context_instance=RequestContext(request))

@@ -10,7 +10,7 @@
    <td>
     <p>Hey!</p>
     <p>{{ pledge.beneficiary.quitter.first_name }} hasn't smoked for {{ pledge.days }} days.</p>
-    <p>You pledged to donate ${{ pledge.amount }} to {{ pledge.beneficiary.name }}.</p>
+    <p>You pledged to donate {{ pledge.beneficiary.quitter.profile.currency }}{{ pledge.amount }} to {{ pledge.beneficiary.name }}.</p>
 
     <p>Follow these two steps and you're done:</p>
    </td>

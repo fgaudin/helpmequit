@@ -56,6 +56,7 @@ class Profile(models.Model):
     pack_price = models.DecimalField(max_digits=5, decimal_places=2)
     pack_size = models.PositiveIntegerField()
     donation_percentage = models.PositiveIntegerField(default=100)
+    currency = models.CharField(max_length=10, default='$')
     current_beneficiary = models.ForeignKey('Beneficiary')
     testimony = models.TextField()
     video_embed_url = models.URLField(null=True, blank=True)
