@@ -139,6 +139,13 @@ def logout(request):
 def edit(request):
     context = {}
 
+    password_form = SetPasswordForm(user=request.user)
+    user_form = UserForm(instance=request.user)
+    profile_form = ProfileForm(instance=request.user.profile)
+    profile_form.fields['current_beneficiary'].queryset = Beneficiary.objects.filter(quitter_id=request.user.id)
+    beneficiary_form = BeneficiaryForm(prefix='existing', instance=request.user.profile.current_beneficiary)
+    new_beneficiary_form = BeneficiaryForm(prefix='new')
+
     if request.method == 'POST':
         if request.POST.get('update_password'):
             password_form = SetPasswordForm(request.user, request.POST)
@@ -185,13 +192,6 @@ def edit(request):
                 profile.save()
                 messages.success(request, _('Your page has been updated successfully'))
                 return redirect(reverse('user', kwargs={'slug': request.user.profile.slug}))
-    else:
-        password_form = SetPasswordForm(user=request.user)
-        user_form = UserForm(instance=request.user)
-        profile_form = ProfileForm(instance=request.user.profile)
-        profile_form.fields['current_beneficiary'].queryset = Beneficiary.objects.filter(quitter_id=request.user.id)
-        beneficiary_form = BeneficiaryForm(prefix='existing', instance=request.user.profile.current_beneficiary)
-        new_beneficiary_form = BeneficiaryForm(prefix='new')
 
     context['password_form'] = password_form
     context['user_form'] = user_form

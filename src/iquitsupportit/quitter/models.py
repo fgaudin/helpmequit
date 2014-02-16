@@ -8,6 +8,8 @@ import os
 import uuid
 import random
 import string
+from django.core import validators
+import re
 
 
 class ProfileManager(models.Manager):
@@ -45,7 +47,10 @@ def get_profile_upload_path(instance, filename):
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
-    slug = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True,
+        validators=[
+            validators.RegexValidator(re.compile('^[\w.]+$'), _('Only letters, numbers and . are accepted.'), 'invalid')
+        ])
     quit_date = models.DateTimeField()
     cigarettes_per_day = models.PositiveIntegerField()
     pack_price = models.DecimalField(max_digits=5, decimal_places=2)
