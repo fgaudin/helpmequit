@@ -12,3 +12,4 @@ Follow these two steps and you're done:
 A big thank you!
 
 {{ signature }}
+{{ website_url }}

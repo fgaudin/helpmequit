@@ -85,8 +85,12 @@ def signup(request):
 
                 context = {'url': url,
                            'signature': settings.EMAIL_SIGNATURE}
-                text_content = render_to_string(template_text, context)
-                html_content = render_to_string(template_html, context)
+                text_content = render_to_string(template_text,
+                                                context,
+                                                context_instance=RequestContext(request))
+                html_content = render_to_string(template_html,
+                                                context,
+                                                context_instance=RequestContext(request))
 
                 msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
                 msg.attach_alternative(html_content, "text/html")

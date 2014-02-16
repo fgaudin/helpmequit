@@ -1,4 +1,4 @@
-from fabric.operations import local, run
+from fabric.operations import local, run, sudo
 from fabric.state import env
 from fabric.context_managers import cd, prefix
 import os
@@ -27,10 +27,12 @@ def requirements():
         run('pip install -r %s' % os.path.join(base_dir, code_dir, 'src', 'requirements.txt'))
 
 def migrate():
-    pass
+    with cd(os.path.join(base_dir, code_dir, 'src', 'iquitsupportit')):
+        with prefix('source %s/bin/activate' % (base_dir)):
+            run('python manage.py migrate --settings=iquitsupportit.settings_prod')
 
 def reload():
-    pass
+    sudo('/etc/init.d/apache2 reload')
 
 def deploy():
     deploy_tag = tag()

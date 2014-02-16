@@ -8,3 +8,4 @@ Confirm: {{ url }}
 Best regards,
 
 {{ signature }}
+{{ website_url }}

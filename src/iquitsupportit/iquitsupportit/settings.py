@@ -21,12 +21,13 @@ SECRET_KEY = 'skp&%n68!v!s1pzv##u#n32pqwnrgq52&!c7vpw!u!%tfhav*z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 TEMPLATE_DEBUG = True
+EMAIL_DEBUG = False
 
 ALLOWED_HOSTS = ['localhost:10001']
 SITENAME = "Help Me Quit"
 ADMINS = (('Francois Gaudin', 'contact@helpmequ.it'),)
+SERVER_EMAIL = 'contact@helpmequ.it'
 
 # Application definition
 
@@ -113,7 +114,6 @@ STATICFILES_DIRS = (
 DEFAULT_FROM_EMAIL = 'Help Me Quit <contact@helpmequ.it>'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
-EMAIL_DEBUG = False
 
 if not EMAIL_DEBUG:
     EMAIL_HOST = 'mail.gandi.net'

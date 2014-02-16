@@ -2,8 +2,9 @@ from iquitsupportit.settings import *
 
 DEBUG = False
 TEMPLATE_DEBUG = False
-ALLOWED_HOSTS = ['.iquitsupport.us',
-                 '.helpmequ.it']
+ALLOWED_HOSTS = ['.helpmequ.it',
+                 '.iquitsupport.us',
+                 ]
 
 DATABASES = {
     'default': {

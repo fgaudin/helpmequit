@@ -9,3 +9,4 @@ After setting your password, you will be able to set up your page.
 Good luck!
 
 {{ signature }}
+{{ website_url }}

@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from django.core.mail.message import EmailMultiAlternatives
 from django.utils.timezone import now
+from context_processors import settings_variables
 
 
 class Command(BaseCommand):
@@ -34,6 +35,7 @@ class Command(BaseCommand):
 
                     context = {'pledge': pledge,
                                'url': url}
+                    context.update(settings_variables())
 
                     text_content = render_to_string(template_text, context)
                     html_content = render_to_string(template_html, context)
