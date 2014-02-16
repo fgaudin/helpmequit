@@ -7,6 +7,10 @@ from django.db import models
 
 class Migration(DataMigration):
 
+    depends_on = (
+        ("quitter", "0006_auto__add_field_profile_video_embed_url__add_field_profile_picture"),
+    )
+
     def forwards(self, orm):
         # Note: Don't use "from appname.models import ModelName".
         # Use orm.ModelName to refer to models in this application,
