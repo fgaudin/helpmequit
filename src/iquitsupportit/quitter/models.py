@@ -6,6 +6,8 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 import os
 import uuid
+import random
+import string
 
 
 class ProfileManager(models.Manager):
@@ -14,8 +16,15 @@ class ProfileManager(models.Manager):
         default_beneficiary = default_profile.current_beneficiary
         beneficiary = default_beneficiary.clone(user)
 
+        base_slug = user.first_name.lower() or ''.join(random.choice(string.lowercase) for i in range(8))
+        slug = base_slug
+        i = 1
+        while self.filter(slug=slug).exists():
+            slug = u'%s%d' % (base_slug, i)
+            i += 1
+
         return self.create(user=user,
-                           slug=user.email,
+                           slug=slug,
                            quit_date=now(),
                            cigarettes_per_day=10,
                            pack_price=7,

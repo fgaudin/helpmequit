@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 import hashlib
 import uuid
+import re
+
+
+FIRSTNAME_REGEX = re.compile('(\w+)')
 
 
 class EmailAccountManager(models.Manager):
@@ -17,6 +21,10 @@ class EmailAccountManager(models.Manager):
             user = User.objects.get(email=email)
         except User.DoesNotExist:
             user = User.objects.create_user(hashlib.sha256(str(uuid.uuid4())).hexdigest()[:30], email, '!')
+            match = FIRSTNAME_REGEX.search(user.email)
+            if match:
+                user.first_name = match.group().lower().capitalize()
+                user.save()
 
         user.set_unusable_password()
         user.save()
