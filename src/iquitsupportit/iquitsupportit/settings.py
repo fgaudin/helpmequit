@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_extensions',
     'south',
+    'auth2',
     'storages',
     'quitter',
     'supporter',
@@ -126,7 +127,8 @@ EMAIL_SIGNATURE = 'The Help Me Quit Team'
 DEFAULT_PROFILE = 'francois'
 
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
-                           'auth.backends.TokenBackend',)
+                           'auth2.backends.EmailBackend',
+                           'auth2.backends.TokenBackend',)
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAJZHQWOAUZLNWQ7KQ'

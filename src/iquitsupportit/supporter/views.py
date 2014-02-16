@@ -12,11 +12,11 @@ from supporter.models import Pledge
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.db.transaction import commit_on_success
-from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.mail.message import EmailMultiAlternatives
 from django.template.context import RequestContext
+import hashlib
 
 
 @csrf_exempt
@@ -32,7 +32,7 @@ def pledge_create(request, beneficiary_id):
         try:
             user = User.objects.get(email=email)
         except ObjectDoesNotExist:
-            user = User.objects.create_user(email, email, '!')
+            user = User.objects.create_user(hashlib.sha256(str(uuid.uuid4())).hexdigest()[:30], email, '!')
             user.set_unusable_password()
             user.save()
 

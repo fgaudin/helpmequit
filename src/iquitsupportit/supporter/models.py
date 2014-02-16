@@ -38,11 +38,11 @@ class Pledge(models.Model):
         elif self.confirmed:
             status = 'confirmed'
 
-        return "%s -> %s: $%s after %s days [%s]" % (self.supporter,
-                                                           self.beneficiary,
-                                                           self.amount,
-                                                           self.days,
-                                                           status)
+        return "%s -> %s: $%s after %s days [%s]" % (self.supporter.email,
+                                                     self.beneficiary,
+                                                     self.amount,
+                                                     self.days,
+                                                     status)
 
     def should_send(self):
         if not self.last_attempt:

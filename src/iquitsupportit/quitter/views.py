@@ -7,8 +7,6 @@ from quitter.forms import SignupForm, LoginForm, SetPasswordForm, ProfileForm, \
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.mail.message import EmailMultiAlternatives
@@ -18,6 +16,7 @@ from django.db.transaction import commit_on_success
 from django.contrib.auth.decorators import login_required
 import requests
 from bs4 import BeautifulSoup
+from auth2.models import EmailAccount
 
 
 def index(request, slug=None):
@@ -50,37 +49,28 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
-            create_profile = False
             user = None
             send_email = False
-            profile = None
-            hash = None
+            account = None
+            hash = uuid.uuid4()
             try:
-                user = User.objects.get(email=email)
+                account = EmailAccount.objects.get(email=email)
+                user = account.user
                 if user.has_usable_password():
                     messages.error(request, _("This email is already registered. If it's yours, use the 'forgot password' link."))
                 else:
                     if user.profile:
                         send_email = True
-                        profile = user.profile
-                        hash = uuid.uuid4()
-                        profile.set_hash(hash)
-                        profile.save()
+                        account.set_hash(hash)
+                        account.save()
                         messages.info(request, _('A new confirmation email has been sent.'))
-                    else:
-                        # pledger who wants to create an account
-                        create_profile = True
-            except ObjectDoesNotExist:
+            except EmailAccount.DoesNotExist:
                 # new subscription
-                user = User.objects.create_user(email, email, '!')
-                user.set_unusable_password()
-                user.save()
-                create_profile = True
+                account = EmailAccount.objects.create_account(email, hash)
+                user = account.user
 
-            if create_profile:
                 # create profile
-                hash = uuid.uuid4()
-                profile = Profile.objects.create_profile(user, hash)
+                Profile.objects.create_profile(user)
                 send_email = True
                 messages.info(request, _('An email has been sent to %s with a link to confirm your signup.') % (user.email))
 
@@ -127,7 +117,7 @@ def login(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            user = authenticate(username=email, password=password)
+            user = authenticate(email=email, password=password)
             if user is not None:
                 auth_login(request, user)
                 return redirect(reverse('user', kwargs={'slug': request.user.profile.slug}))

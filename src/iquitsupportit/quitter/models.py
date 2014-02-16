@@ -3,14 +3,13 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 from django.db.models.aggregates import Sum
 from django.conf import settings
-import hashlib
 from django.utils.translation import gettext_lazy as _
 import os
 import uuid
 
 
 class ProfileManager(models.Manager):
-    def create_profile(self, user, hash):
+    def create_profile(self, user):
         default_profile = Profile.objects.get(slug=settings.DEFAULT_PROFILE)
         default_beneficiary = default_profile.current_beneficiary
         beneficiary = default_beneficiary.clone(user)
@@ -25,8 +24,7 @@ class ProfileManager(models.Manager):
                            current_beneficiary=beneficiary,
                            testimony='Write your testimony here!',
                            video_embed_url=default_profile.video_embed_url,
-                           picture=default_profile.picture,
-                           hash=hashlib.sha1(str(hash)).hexdigest())
+                           picture=default_profile.picture)
 
 
 def get_profile_upload_path(instance, filename):
@@ -46,14 +44,13 @@ class Profile(models.Model):
     donation_percentage = models.PositiveIntegerField(default=100)
     current_beneficiary = models.ForeignKey('Beneficiary')
     testimony = models.TextField()
-    hash = models.CharField(max_length=128, null=True, blank=True)
     video_embed_url = models.URLField(null=True, blank=True)
     picture = models.ImageField(upload_to=get_profile_upload_path, null=True, blank=True)
 
     objects = ProfileManager()
 
     def __unicode__(self):
-        return self.user.__unicode__()
+        return u'%s' % self.user.email
 
     def duration(self):
         return now() - self.quit_date
@@ -98,9 +95,6 @@ class Profile(models.Model):
             + self.amount_pledged()\
             + self.supporter_donations()\
             + self.supporter_pledges()
-
-    def set_hash(self, hash):
-        self.hash = hashlib.sha1(str(hash)).hexdigest()
 
 
 def get_banner_upload_path(instance, filename):
