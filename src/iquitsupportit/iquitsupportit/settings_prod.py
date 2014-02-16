@@ -17,8 +17,8 @@ DATABASES = {
     }
 }
 
-EMAIL_HOST = 'mail.helpmequ.it'
-EMAIL_PORT = 143
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'contact@helpmequ.it'
 EMAIL_HOST_PASSWORD = 'W|X<pud!j:oW17R7`6E,8GVT'
 EMAIL_USE_TLS = True
