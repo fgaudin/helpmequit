@@ -63,7 +63,7 @@ def signup(request):
                         send_email = True
                         account.set_hash(hash)
                         account.save()
-                        messages.info(request, _('A new confirmation email has been sent.'))
+                        messages.info(request, _("A new confirmation email has been sent. Check your spam folder if you haven't received it."))
             except EmailAccount.DoesNotExist:
                 # new subscription
                 account = EmailAccount.objects.create_account(email, hash)
@@ -72,7 +72,7 @@ def signup(request):
                 # create profile
                 Profile.objects.create_profile(user)
                 send_email = True
-                messages.info(request, _('An email has been sent to %s with a link to confirm your signup.') % (user.email))
+                messages.info(request, _("An email has been sent to %s with a link to confirm your signup. Check your spam folder if you haven't received anything.") % (user.email))
 
             if send_email:
                 template_html = 'signup/email.html'

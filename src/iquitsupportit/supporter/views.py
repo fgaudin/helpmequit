@@ -66,7 +66,7 @@ def pledge_create(request, beneficiary_id):
         msg.send()
 
         response_data = {'status': True,
-                         'message': _('Thank you! Check your <strong>emails</strong> to confirm your pledge')}
+                         'message': _("Thank you! Check your <strong>emails</strong> to confirm your pledge. Check your spam folder too if you haven't received it.")}
     else:
         response_data = {'status': False,
                          'errors': form.errors}
