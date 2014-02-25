@@ -369,13 +369,26 @@ body {
     padding-bottom: 1em;
 }
 
-.home #id_email {
+#home-header a, #home-header a:active,
+#home-header a:visited, #home-header a:hover{
+    color: white;
+}
+#home-header a:hover{
+    text-decoration: none;
+}
+#login-form {
+    display: none;
+}
+
+.home #id_email,
+.home #id_password {
     font-size: 1.4em;
     margin-left: 0.1em;
     margin-right: 0.1em;
     border-radius: 10px;
 }
-#home-signup {
+#home-signup,
+#home-login {
     font-size: 1.4em;
     padding-left: 1em;
     padding-right: 1em;
@@ -383,6 +396,11 @@ body {
     font-weight: bold;
     margin-left: 0.1em;
     margin-right: 0.1em;
+}
+
+.home .alternative {
+    font-size: 1.5em;
+    margin-top: 1em;
 }
 
 .home-block {
@@ -417,6 +435,14 @@ body {
     padding: 0px;
     border: 0px;
     text-align: justify;
+}
+
+#home-featured a, #home-featured a:active,
+#home-featured a:visited, #home-featured a:hover{
+    color: #333;
+}
+#home-featured a:hover {
+    text-decoration: none;
 }
 
 #home-featured .quote {
