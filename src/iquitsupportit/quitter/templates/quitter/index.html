@@ -27,7 +27,7 @@
     <div class="pure-u-1">
         <div id="beneficiary-box" class="{{ profile.current_beneficiary.banner_font_theme }} " {% if profile.current_beneficiary.banner %} style="background: url({{profile.current_beneficiary.banner.url}})" {% endif %}>
              <div id="beneficiary"><a href="{{ profile.current_beneficiary.url }}" target="_blank">{{ profile.current_beneficiary.name }}</a></div>
-             with your help, I've raised
+             With your help, I've raised:
              <div id="total-amount">{{ profile.currency }}{{ profile.total_amount|floatformat:"0" }}</div>
              <div id="copyright">{% if profile.current_beneficiary.banner_copyright %}&copy;{{ profile.current_beneficiary.banner_copyright }}{% endif %}</div>
         </div>
