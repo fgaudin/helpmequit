@@ -40,11 +40,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_extensions',
     'south',
-    'auth2',
     'storages',
+    'auth2',
+    'donation',
+    'home',
     'quitter',
     'supporter',
-    'donation',
 )
 
 MIDDLEWARE_CLASSES = (

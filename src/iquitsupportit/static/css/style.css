@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Varela|Gochi+Hand|Roboto);
+
 .error {
     color: rgb(202, 60, 60);
 }
@@ -5,6 +7,7 @@
 body {
     background: url('/static/img/binding_dark.png') #434343;
 }
+
 .loading {
     height: 32px;
     width: 32px;
@@ -113,7 +116,8 @@ body {
     padding-top: 30px;
     font-size: 2.7em;
     font-weight: bold;
-    font-family:cursive;
+    font-family: 'Gochi Hand', cursive;
+    letter-spacing: 0.1em;
 }
 
 /* END HELLO BOX */
@@ -162,6 +166,7 @@ body {
 #beneficiary {
     padding: 35px 0 25px 0;
     font-size: 2em;
+
 }
 
 #beneficiary a {
@@ -321,3 +326,107 @@ body {
     color: #666;
 }
 /* END EDIT BOX */
+
+/* HOME */
+.home .pure-g-r [class *="pure-u"] {
+    font-family: 'Roboto', sans-serif !important;
+}
+.home h4 {
+    font-size: 1.7em;
+
+}
+
+#home-header {
+    background: url('/static/img/banner.jpg');
+    text-align: center;
+    font-weight: bold;
+    color: #FFF;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.7);
+    padding-bottom: 4em;
+}
+
+
+#home-header h1,
+#home-header h2,
+#home-header h3 {
+    font-family: 'Varela', sans-serif;
+    margin: 0px;
+}
+
+#home-header h1 {
+    margin: 0px;
+    padding-top: 1em;
+    font-size: 5em;
+}
+
+#home-header h2 {
+    font-size: 4em;
+    padding-bottom: 0.5em;
+}
+
+#home-header h3 {
+    font-size: 3em;
+    padding-bottom: 1em;
+}
+
+.home #id_email {
+    font-size: 1.4em;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+    border-radius: 10px;
+}
+#home-signup {
+    font-size: 1.4em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+}
+
+.home-block {
+    margin: 45px 25px;
+    text-align: justify;
+    border-top: 4px solid green;
+}
+
+.home-block p{
+    color: #666;
+    font-size: 1em;
+}
+
+#home-example {
+    text-align: center;
+    height: 200px;
+    padding-top: 100px;
+}
+
+#home-example .pure-button{
+    padding: 20px 40px;
+    font-size: 2em;
+    border-radius: 10px;
+}
+
+#home-featured {
+    margin: 25px;
+}
+
+#home-featured #testimony-box {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    text-align: justify;
+}
+
+#home-featured .quote {
+    font-size: 3em;
+    line-height: 0.1em;
+    vertical-align: -0.3em;
+}
+
+#home-featured img {
+    float: right;
+    padding:0px 0px 15px 25px;
+}
+/* END HOME */

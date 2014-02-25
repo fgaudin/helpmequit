@@ -33,7 +33,7 @@ def index(request, slug=None):
     context['form'] = PledgeForm()
     context['signup_form'] = SignupForm()
     context['login_form'] = LoginForm()
-    return render_to_response('index.html',
+    return render_to_response('quitter/index.html',
                               context,
                               context_instance=RequestContext(request))
 
@@ -75,8 +75,8 @@ def signup(request):
                 messages.info(request, _("An email has been sent to %s with a link to confirm your signup. Check your spam folder if you haven't received anything.") % (user.email))
 
             if send_email:
-                template_html = 'signup/email.html'
-                template_text = 'signup/email.txt'
+                template_html = 'quitter/signup/email.html'
+                template_text = 'quitter/signup/email.txt'
                 subject = _(u"Please confirm your signup")
                 to = user.email
                 from_email = settings.DEFAULT_FROM_EMAIL
@@ -203,7 +203,7 @@ def edit(request):
     context['beneficiary_form'] = beneficiary_form
     context['new_beneficiary_form'] = new_beneficiary_form
 
-    return render_to_response('edit.html',
+    return render_to_response('quitter/edit.html',
                               context,
                               context_instance=RequestContext(request))
 
@@ -212,6 +212,6 @@ def edit(request):
 def beneficiary_form(request, id):
     beneficiary = get_object_or_404(Beneficiary, pk=id, quitter=request.user)
     beneficiary_form = BeneficiaryForm(prefix='existing', instance=beneficiary)
-    return render_to_response('beneficiary_form.html',
+    return render_to_response('quitter/beneficiary_form.html',
                               {'form': beneficiary_form},
                               context_instance=RequestContext(request))

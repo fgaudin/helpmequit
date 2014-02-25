@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'quitter.views.index', {'slug': settings.DEFAULT_PROFILE}, name='home'),
+    url(r'^$', 'home.views.index', name='home'),
     url(r'^signup/(?P<hash>[0-9a-f\-]+)/', 'quitter.views.confirm_signup', name="confirm_signup"),
     url(r'^signup/', 'quitter.views.signup', name="signup"),
     url(r'^login/', 'quitter.views.login', name="login"),
