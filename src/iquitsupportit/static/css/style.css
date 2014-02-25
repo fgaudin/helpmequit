@@ -345,6 +345,12 @@ body {
     padding-bottom: 4em;
 }
 
+@media only screen and (max-width : 480px) {
+    #home-header {
+        font-size: 0.7em;
+    }
+}
+
 
 #home-header h1,
 #home-header h2,
@@ -383,8 +389,7 @@ body {
 .home #id_email,
 .home #id_password {
     font-size: 1.4em;
-    margin-left: 0.1em;
-    margin-right: 0.1em;
+    margin: 15px auto;
     border-radius: 10px;
 }
 #home-signup,
