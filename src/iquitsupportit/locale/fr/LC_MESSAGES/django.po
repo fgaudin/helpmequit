@@ -1,0 +1,517 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-02 23:40-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: auth2/models.py:38
+msgid "email address"
+msgstr "adresse email"
+
+#: home/views.py:16
+msgid "sign up"
+msgstr "s'inscrire"
+
+#: home/views.py:18
+msgid "log in"
+msgstr "se connecter"
+
+#: home/templates/home/index.html:7 home/templates/home/index.html.py:15
+msgid "Quit smoking and help a charity"
+msgstr "Arrêtez de fumer et aidez une association"
+
+#: home/templates/home/index.html:17
+msgid "Quit smoking, get support, donate to your favorite charity"
+msgstr "Arrêtez de fumer, obtenez du soutien, donnez à une association"
+
+#: home/templates/home/index.html:31
+msgid "Quit smoking"
+msgstr "Arrêtez de fumer"
+
+#: home/templates/home/index.html:32 home/templates/home/index.html.py:64
+msgid "Get support"
+msgstr "Obtenez du soutien"
+
+#: home/templates/home/index.html:33
+msgid "Donate to your favorite charity"
+msgstr "Donnez à une association"
+
+#: home/templates/home/index.html:37 templates/base.html:30
+msgid "Sign up"
+msgstr "S'inscrire"
+
+#: home/templates/home/index.html:38 home/templates/home/index.html.py:44
+#, python-format
+msgid "or %(link)s"
+msgstr "ou %(link)s"
+
+#: home/templates/home/index.html:43
+msgid "Login"
+msgstr "Se connecter"
+
+#: home/templates/home/index.html:52
+msgid "See what you save"
+msgstr "Économisez"
+
+#: home/templates/home/index.html:53
+msgid ""
+"The first days are the hardest. Get your profile page and track what you "
+"save. You'll quickly realize that every day is a reward."
+msgstr ""
+"Les premiers jours sont les plus durs. Créer votre profil et suivez vos "
+"économies. Vous verrez rapidement que chaque jour est une récompense."
+
+#: home/templates/home/index.html:58
+msgid "Donate to a charity"
+msgstr "Donnez à une asso"
+
+#: home/templates/home/index.html:59
+msgid ""
+"Not smoking again is the tough part. Donate to your favorite charity. It "
+"will make your decision even more meaningful."
+msgstr ""
+"Ne pas reprendre est difficile. Donnez à votre association préférée, cela "
+"donnera encore plus de sens à votre décision d'arrêter."
+
+#: home/templates/home/index.html:65
+msgid ""
+"Motivation is all you need and when a friend pledges to donate $20 if you "
+"reach 30 days, you'll see how well it works."
+msgstr ""
+"La motivation est le plus important et quand un ami promet de donner 20€ si "
+"vous atteignez 30 jours, vous verrez que ça aide."
+
+#: home/templates/home/index.html:72
+msgid "See an example"
+msgstr "Voir un exemple"
+
+#: home/templates/home/index.html:79
+msgid "Featured profile"
+msgstr "Profil"
+
+#: home/templates/home/index.html:82
+#, python-format
+msgid ""
+"%(profile)s quit %(duration)s days ago and raised $%(amount)s for "
+"%(beneficiary)s."
+msgstr ""
+"%(profile)s a arrêté il y a %(duration)s jours et a récolté %(amount)s€ pour "
+"%(beneficiary)s."
+
+#: quitter/forms.py:9 quitter/forms.py:19
+msgid "Email"
+msgstr "Email"
+
+#: quitter/forms.py:20
+msgid "Password"
+msgstr "Mot de passe"
+
+#: quitter/models.py:53
+msgid "Only letters, numbers and . are accepted."
+msgstr "Seuls les lettres, nombre et le . sont acceptés."
+
+#: quitter/models.py:55
+msgid "Quit date"
+msgstr "Date d'arrêt"
+
+#: quitter/models.py:56
+msgid "Cigarettes per day"
+msgstr "Cigarettes par jour"
+
+#: quitter/models.py:57
+msgid "Pack price"
+msgstr "Prix d'un paquet"
+
+#: quitter/models.py:58
+msgid "Pack size"
+msgstr "Taille d'un paquet"
+
+#: quitter/models.py:59
+msgid "Donation percentage"
+msgstr "Pourcentage de don"
+
+#: quitter/models.py:60
+msgid "Currency"
+msgstr "Monnaie"
+
+#: quitter/models.py:61
+msgid "Beneficiary"
+msgstr "Bénéficiaire"
+
+#: quitter/models.py:62 quitter/templates/quitter/edit.html:103
+msgid "Testimony"
+msgstr "Témoignage"
+
+#: quitter/models.py:63
+msgid "Video embed url"
+msgstr "Url video"
+
+#: quitter/models.py:64
+msgid "Picture"
+msgstr "Image"
+
+#: quitter/models.py:67
+msgid "Language"
+msgstr "Langue"
+
+#: quitter/models.py:140
+msgid "Name"
+msgstr "Nom"
+
+#: quitter/models.py:141
+msgid "Url"
+msgstr "Url"
+
+#: quitter/models.py:142
+msgid "Donate url"
+msgstr "Url de don"
+
+#: quitter/models.py:146
+msgid "Banner"
+msgstr "Bannière"
+
+#: quitter/models.py:148
+msgid "dark"
+msgstr "sombre"
+
+#: quitter/models.py:148
+msgid "light"
+msgstr "clair"
+
+#: quitter/models.py:151
+msgid "Font color"
+msgstr "Couleur de la police"
+
+#: quitter/models.py:155
+msgid "Banner copyright"
+msgstr "Copyright de la bannière"
+
+#: quitter/models.py:159
+msgid "Logo"
+msgstr "Logo"
+
+#: quitter/views.py:63
+msgid ""
+"This email is already registered. If it's yours, use the 'forgot password' "
+"link."
+msgstr ""
+"Cet email est déjà enregistré. S'il vous appartient, utilisez le lien 'mot "
+"de passe oublié'."
+
+#: quitter/views.py:69
+msgid ""
+"A new confirmation email has been sent. Check your spam folder if you "
+"haven't received it."
+msgstr ""
+"Un nouvel email de confirmation a été envoyé. Vérifiez votre dossier "
+"'indésirables' si vous ne l'avez pas recu."
+
+#: quitter/views.py:78
+#, python-format
+msgid ""
+"An email has been sent to %s with a link to confirm your signup. Check your "
+"spam folder if you haven't received anything."
+msgstr ""
+"Un email a été envoyé à %s contenant un lien pour confirmer votre "
+"inscription. Vérifiez votre dossier 'indésirables' si vous n'avez rien recu."
+
+#: quitter/views.py:83
+msgid "Please confirm your signup"
+msgstr "Veuillez confirmer votre inscription"
+
+#: quitter/views.py:102
+msgid "Your email is not valid."
+msgstr "Votre email est invalide."
+
+#: quitter/views.py:104
+msgid "Method not allowed."
+msgstr "Méthode non authorisée."
+
+#: quitter/views.py:116
+msgid "Hash invalid"
+msgstr "Hash invalide"
+
+#: quitter/views.py:132
+msgid "Email and/or password invalid"
+msgstr "Email et/ou mot de passe invalides"
+
+#: quitter/views.py:134
+msgid "Method not allowed"
+msgstr "Méthode non authorisée"
+
+#: quitter/views.py:162
+msgid "Password updated successfully"
+msgstr "Mot de passe mis à jour avec succès"
+
+#: quitter/views.py:194
+msgid "The url doesn't contain any video"
+msgstr "L'url ne contient aucune vidéo"
+
+#: quitter/views.py:201
+msgid "Your page has been updated successfully"
+msgstr "Votre page a été mise à jour avec succès"
+
+#: quitter/templates/quitter/edit.html:14
+msgid "Profile"
+msgstr "Profil"
+
+#: quitter/templates/quitter/edit.html:38
+msgid "Settings"
+msgstr "Paramètres"
+
+#: quitter/templates/quitter/edit.html:77
+msgid "Charity"
+msgstr "Association"
+
+#: quitter/templates/quitter/edit.html:93
+msgid "Or create a new one"
+msgstr "Ou créer un nouveau"
+
+#: quitter/templates/quitter/edit.html:125
+msgid "or"
+msgstr "ou"
+
+#: quitter/templates/quitter/edit.html:135
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: quitter/templates/quitter/edit.html:156
+msgid "Update your password"
+msgstr "Changer votre mot de passe"
+
+#: quitter/templates/quitter/edit.html:158
+msgid "Set your password"
+msgstr "Définir votre mot de passe"
+
+#: quitter/templates/quitter/edit.html:164
+msgid "Update password"
+msgstr "Mettre à jour"
+
+#: quitter/templates/quitter/index.html:10
+msgid "Hello"
+msgstr "Bonjour"
+
+#: quitter/templates/quitter/index.html:11
+msgid "My name is"
+msgstr "Je m'appelle"
+
+#: quitter/templates/quitter/index.html:19
+msgid "I haven't smoked for"
+msgstr "Je n'ai pas fumé depuis"
+
+#: quitter/templates/quitter/index.html:22
+#, python-format
+msgid "and %(percentage)s%% of what I save goes to"
+msgstr "et %(percentage)s%% de ce que j'économise est pour"
+
+#: quitter/templates/quitter/index.html:31
+msgid "With your help, I've raised:"
+msgstr "Avec votre aide, j'ai récolté"
+
+#: quitter/templates/quitter/index.html:58
+msgid "Donations"
+msgstr "Dons"
+
+#: quitter/templates/quitter/index.html:64
+msgid "Support us"
+msgstr "Soutenez nous"
+
+#: quitter/templates/quitter/index.html:68
+msgid "when I reach"
+msgstr "quand j'atteindrai"
+
+#: quitter/templates/quitter/index.html:76
+msgid "you'll donate"
+msgstr "vous donnerez"
+
+#: quitter/templates/quitter/index.html:84
+msgid "Remind you at"
+msgstr "rappel à"
+
+#: quitter/templates/quitter/index.html:90
+msgid "Pledge to donate"
+msgstr "Promettre"
+
+#: quitter/templates/quitter/index.html:91
+msgid ""
+"This is a pledge, I'll receive no money. First, you will receive an email to "
+"validate\n"
+"your address. When I've reached the goal you set, you will receive another "
+"email with a link to the charity website\n"
+"and a button to confirm your donation."
+msgstr ""
+"Ceci est une promesse de don, je ne recevrai pas d'argent. Vous allez "
+"d'abord recevoir un email pour valider votre adresse. Quand j'aurai atteins "
+"le but que vous avez fixé, vous recevrez un autre email avec un lien vers le "
+"site de l'association ainsi qu'un bouton pour confirmer votre don."
+
+#: quitter/templates/quitter/index.html:103
+msgid "Share"
+msgstr "Partagez"
+
+#: quitter/templates/quitter/index.html:104
+msgid "Help me, help them"
+msgstr "Aidez moi, aidez les"
+
+#: quitter/templates/quitter/index.html:106
+msgid "Spread the word"
+msgstr "Passez le mot"
+
+#: quitter/templates/quitter/index.html:120
+msgid "Years"
+msgstr "Ans"
+
+#: quitter/templates/quitter/index.html:121
+msgid "Months"
+msgstr "Mois"
+
+#: quitter/templates/quitter/index.html:122 supporter/models.py:25
+msgid "Days"
+msgstr "Jours"
+
+#: quitter/templates/quitter/index.html:123
+msgid "Hours"
+msgstr "Heures"
+
+#: quitter/templates/quitter/index.html:124
+msgid "Minutes"
+msgstr "Minutes"
+
+#: quitter/templates/quitter/index.html:125
+msgid "Seconds"
+msgstr "Secondes"
+
+#: quitter/templates/quitter/index.html:170
+msgid "My donations"
+msgstr "Mes dons"
+
+#: quitter/templates/quitter/index.html:171
+msgid "Your donations"
+msgstr "Vos dons"
+
+#: quitter/templates/quitter/index.html:172
+msgid "Your pledges"
+msgstr "Vos promesses"
+
+#: supporter/forms.py:7
+msgid "Your email"
+msgstr "Votre email"
+
+#: supporter/models.py:26
+msgid "Amount"
+msgstr "Montant"
+
+#: supporter/views.py:47
+msgid "Please confirm your pledge"
+msgstr "Veuillez confirmer votre promesse de don"
+
+#: supporter/views.py:69
+msgid ""
+"Thank you! Check your <strong>emails</strong> to confirm your pledge. Check "
+"your spam folder too if you haven't received it."
+msgstr ""
+"Merci! Vérifiez vos <strong>emails</strong> pour confirmer votre promesse de "
+"don. Vérifiez votre dossier 'indésirables' si vous ne l'avez pas recu."
+
+#: supporter/views.py:82
+msgid "Thank you! Your pledge has been confirmed."
+msgstr "Merci! Votre promesse de don a été confirmée."
+
+#: supporter/views.py:92
+msgid "Thank you! Your donation has been recorded."
+msgstr "Merci! Votre don a été enregistré."
+
+#: supporter/templates/email/confirm.html:12
+#: supporter/templates/email/confirm.txt:2
+msgid "Thank you! We really appreciate your support."
+msgstr "Merci! Nous apprécions sincèrement votre soutien."
+
+#: supporter/templates/email/confirm.html:13
+#: supporter/templates/email/confirm.txt:4
+#, python-format
+msgid ""
+"First, please add %(sitename)s to your contact list to avoid emails from us "
+"going to spam."
+msgstr ""
+"Pour commencer, veuillez ajouter %(sitename)s à vos contacts pour éviter que "
+"nos emails soient considérés comme indésirables."
+
+#: supporter/templates/email/confirm.html:14
+#: supporter/templates/email/confirm.txt:6
+#, python-format
+msgid ""
+"You pledged to donate %(currency)s%(amount)s when %(first_name)s reaches "
+"%(days)s days without smoking."
+msgstr ""
+"Vous avez promis de donner %(amount)s%(currency)s quand %(first_name)s "
+"atteindra %(days)s jours sans fumer."
+
+#: supporter/templates/email/confirm.html:15
+#: supporter/templates/email/confirm.txt:7
+#, python-format
+msgid ""
+"Now, you need to confirm your pledge so we can send you a reminder and a "
+"link when %(first_name)s reaches this goal."
+msgstr ""
+"Nous vous prions de bien vouloir confirmer votre promesse pour que nous "
+"puissions vous envoyer un rappel et un lien quand %(first_name)s atteindra "
+"ce but."
+
+#: supporter/templates/email/confirm.html:20
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: supporter/templates/email/confirm.html:22
+#, python-format
+msgid "or click the following link: %(url)s"
+msgstr "ou cliquez  sur le lien suivant : %(url)s"
+
+#: supporter/templates/email/confirm.html:27
+#: supporter/templates/email/confirm.txt:11
+msgid "Best regards,"
+msgstr "Cordialement,"
+
+#: supporter/templates/email/confirm.txt:9
+#, python-format
+msgid "Confirm: %(url)s"
+msgstr "Confirmer : %(url)s"
+
+#: templates/base.html:28
+msgid "View your page"
+msgstr "Voir votre page"
+
+#: templates/base.html:28
+msgid "Edit your page"
+msgstr "Éditez votre page"
+
+#: templates/base.html:28
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: templates/base.html:30
+msgid "Quitting too and want your own page?"
+msgstr "Vous arrêtez aussi et vous voulez votre propre page ?"
+
+#~ msgid ""
+#~ "You pledged to donate %(currency)s%(amount)s when %(first_name)s reaches "
+#~ "%(days)s days without smoking.\n"
+#~ "Now, you need to confirm your pledge so we can send you a reminder and a "
+#~ "link when %(first_name)s reaches this goal."
+#~ msgstr ""
+#~ "Nous vous prions de bien vouloir confirmer votre promesse pour que nous "
+#~ "puissions vous envoyer un rappel et un lien quand %(first_name)s "
+#~ "atteindra ce but."

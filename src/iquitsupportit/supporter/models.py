@@ -4,6 +4,7 @@ from quitter.models import Beneficiary
 import datetime
 from django.db.models.aggregates import Sum
 from django.utils.timezone import now
+from django.utils.translation import ugettext_lazy as _
 
 
 class PledgeManager(models.Manager):
@@ -21,8 +22,8 @@ class PledgeManager(models.Manager):
 class Pledge(models.Model):
     supporter = models.ForeignKey(User, related_name='pledges')
     beneficiary = models.ForeignKey(Beneficiary, related_name='pledges_received')
-    days = models.PositiveIntegerField()
-    amount = models.PositiveIntegerField()
+    days = models.PositiveIntegerField(verbose_name=_('Days'))
+    amount = models.PositiveIntegerField(verbose_name=_('Amount'))
     confirmed = models.BooleanField(default=False)
     honored = models.BooleanField(default=False)
     hash = models.CharField(max_length=128, unique=True)

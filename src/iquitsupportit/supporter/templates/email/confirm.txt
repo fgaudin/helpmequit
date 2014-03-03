@@ -1,13 +1,14 @@
-Thank you! We really appreciate your support.
+{% load i18n %}
+{% trans "Thank you! We really appreciate your support." %}
 
-First, please add {{ sitename }} to your contact list to avoid emails from us going to spam.
+{% blocktrans %}First, please add {{ sitename }} to your contact list to avoid emails from us going to spam.{% endblocktrans %}
 
-You pledged to donate {{ quitter.profile.currency }}{{ amount }} when {{ quitter.first_name }} reaches {{ days }} days without smoking.
-Now, you need to confirm your pledge so we can send you a reminder and a link when {{ quitter.first_name }} reaches this goal.
+{% blocktrans with first_name=quitter.first_name currency=quitter.profile.currency %}You pledged to donate {{ currency }}{{ amount }} when {{ first_name }} reaches {{ days }} days without smoking.{% endblocktrans %}
+{% blocktrans with first_name=quitter.first_name %}Now, you need to confirm your pledge so we can send you a reminder and a link when {{ first_name }} reaches this goal.{% endblocktrans %}
 
-Confirm: {{ url }}
+{% blocktrans %}Confirm: {{ url }}{% endblocktrans %}
 
-Best regards,
+{% trans "Best regards," %}
 
 {{ signature }}
 {{ website_url }}

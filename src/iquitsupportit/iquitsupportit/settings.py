@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.utils.translation import ugettext_lazy as _
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -22,7 +23,7 @@ SECRET_KEY = 'skp&%n68!v!s1pzv##u#n32pqwnrgq52&!c7vpw!u!%tfhav*z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = True
-EMAIL_DEBUG = False
+EMAIL_DEBUG = True
 
 ALLOWED_HOSTS = ['localhost:10001']
 SITENAME = "Help Me Quit"
@@ -50,6 +51,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -90,6 +92,8 @@ TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
 
 LANGUAGE_CODE = 'en-us'
 
+LOCALE_PATHS = os.path.join(BASE_DIR, 'locale'),
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -126,6 +130,11 @@ if not EMAIL_DEBUG:
 EMAIL_SIGNATURE = 'The Help Me Quit Team'
 
 DEFAULT_PROFILE = 'francois'
+DEFAULT_I18N_PROFILES = {
+    'fr': 'francois.fr',
+    'fr-fr': 'francois.fr',
+    'fr-ca': 'francois.fr',
+}
 
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
                            'auth2.backends.EmailBackend',

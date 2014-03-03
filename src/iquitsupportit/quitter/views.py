@@ -6,7 +6,7 @@ from quitter.forms import SignupForm, LoginForm, SetPasswordForm, ProfileForm, \
     UserForm, BeneficiaryForm
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.mail.message import EmailMultiAlternatives
@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required
 import requests
 from bs4 import BeautifulSoup
 from auth2.models import EmailAccount
+from django.utils import translation
 
 
 def index(request, slug=None):
@@ -27,6 +28,8 @@ def index(request, slug=None):
             profile = request.user.profile
         else:
             redirect(reverse('home'))
+
+    translation.activate(profile.language)
 
     context = {}
     context['profile'] = profile
@@ -141,6 +144,7 @@ def logout(request):
 @login_required
 @commit_on_success
 def edit(request):
+    translation.activate(request.user.profile.language)
     context = {}
 
     password_form = SetPasswordForm(user=request.user)

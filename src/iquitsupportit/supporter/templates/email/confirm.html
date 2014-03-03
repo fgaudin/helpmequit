@@ -1,30 +1,30 @@
+{% load i18n %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body style="margin: 0; padding: 0;">
+<body style="margin: 0; padding: 20px;">
  <table border="0" cellpadding="0" cellspacing="0" width="500">
   <tr>
    <td>
-    <p>Thank you! We really appreciate your support.</p>
-    <p>First, please add {{ sitename }} to your contact list to avoid emails from us going to spam.</p>
-    <p>You pledged to donate {{ quitter.profile.currency }}{{ amount }} when {{ quitter.first_name }} reaches {{ days }} days without smoking.</p>
-    <p>Now, you need to confirm your pledge so we can send you a reminder and a link when {{ quitter.first_name }}
-    reaches this goal.</p>
+    <p>{% trans "Thank you! We really appreciate your support." %}</p>
+    <p>{% blocktrans %}First, please add {{ sitename }} to your contact list to avoid emails from us going to spam.{% endblocktrans %}</p>
+    <p>{% blocktrans with first_name=quitter.first_name currency=quitter.profile.currency %}You pledged to donate {{ currency }}{{ amount }} when {{ first_name }} reaches {{ days }} days without smoking.{% endblocktrans %}</p>
+    <p>{% blocktrans with first_name=quitter.first_name %}Now, you need to confirm your pledge so we can send you a reminder and a link when {{ first_name }} reaches this goal.{% endblocktrans %}</p>
    </td>
   </tr>
   <tr>
    <td>
-      <p align="center"><a href="{{ url }}" style="background:#E6E6E6;color:#666;display:inline-block;width:auto; text-align:center;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration:none;border:10px solid #E6E6E6;text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);">Confirm</a></p>
+      <p align="center"><a href="{{ url }}" style="background:#E6E6E6;color:#666;display:inline-block;width:auto; text-align:center;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;text-decoration:none;border:10px solid #E6E6E6;text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);">{% trans "Confirm" %}</a></p>
       <br />
-      <p>or click the following link: {{ url }}</p>
+      <p>{% blocktrans %}or click the following link: {{ url }}{% endblocktrans %}</p>
    </td>
   </tr>
   <tr>
    <td>
-    <p>Best regards,</p>
+    <p>{% trans "Best regards,"%}</p>
 
     <p>{{ signature }}</p>
     <p><a href="{{ website_url }}">{{ website_url }}</a></p>

@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load i18n %}
 
 {% block title %}Support {{ profile.user.first_name }} for quitting smoking by supporting {{ profile.current_beneficiary.name }}{% endblock %}
 {% block content %}
 <div class="pure-g-r">
     <div class="pure-u-2-5">
         <div class="hello-box">
-            <h1>Hello</h1>
-            <h2>My name is</h2>
+            <h1>{% trans "Hello" %}</h1>
+            <h2>{% trans "My name is" %}</h2>
             <div class="name">
             {{ profile.user.first_name }}
             </div>
@@ -15,10 +16,10 @@
     </div>
     <div class="pure-u-3-5">
         <div id="since-box">
-            <div id="since-message">I haven't smoked for</div>
+            <div id="since-message">{% trans "I haven't smoked for" %}</div>
             <div id="clock"></div>
             <div id="charity-box">
-                and {{ profile.donation_percentage }}% of what I save goes to
+                {% blocktrans with percentage=profile.donation_percentage %}and {{ percentage }}% of what I save goes to{% endblocktrans %}
             </div>
         </div>
     </div>
@@ -27,7 +28,7 @@
     <div class="pure-u-1">
         <div id="beneficiary-box" class="{{ profile.current_beneficiary.banner_font_theme }} " {% if profile.current_beneficiary.banner %} style="background: url({{profile.current_beneficiary.banner.url}})" {% endif %}>
              <div id="beneficiary"><a href="{{ profile.current_beneficiary.url }}" target="_blank">{{ profile.current_beneficiary.name }}</a></div>
-             With your help, I've raised:
+             {% trans "With your help, I've raised:" %}
              <div id="total-amount">{{ profile.currency }}{{ profile.total_amount|floatformat:"0" }}</div>
              <div id="copyright">{% if profile.current_beneficiary.banner_copyright %}&copy;{{ profile.current_beneficiary.banner_copyright }}{% endif %}</div>
         </div>
@@ -54,17 +55,17 @@
 <div class="pure-g-r">
     <div class="pure-u-1-3">
         <div id="donations-box">
-            <h1>Donations</h1>
+            <h1>{% trans "Donations" %}</h1>
             <div id="donations-chart" style="width: 280px; height: 280px;"><div class="loading"></div></div>
         </div>
     </div>
     <div class="pure-u-1-3">
         <div id="pledge-box">
-            <h1>Support us</h1>
+            <h1>{% trans "Support us" %}</h1>
             <form action="{% url "pledge_create" profile.current_beneficiary.id %}" method="post" id="pledge-form" class="pure-form">
             <div class="pure-g-r">
                 <div class="pure-u-2-5">
-                <label for="id_days">when I reach</label>
+                <label for="id_days">{% trans "when I reach" %}</label>
                 </div>
                 <div class="pure-u-3-5">
                 {{ form.days }}
@@ -72,7 +73,7 @@
             </div>
             <div class="pure-g-r">
                 <div class="pure-u-2-5">
-                <label for="id_amount">you'll donate</label>
+                <label for="id_amount">{% trans "you'll donate" %}</label>
                 </div>
                 <div class="pure-u-3-5">
                 {{ form.amount }}
@@ -80,16 +81,16 @@
             </div>
             <div class="pure-g-r">
                 <div class="pure-u-2-5">
-                <label for="id_email">Remind you at</label>
+                <label for="id_email">{% trans "Remind you at" %}</label>
                 </div>
                 <div class="pure-u-3-5">
                 {{ form.email }}
                 </div>
             </div>
-            <div id="donate-button"><input type="submit" value="Pledge to donate"/></div>
-            <div id="pledge-disclaimer">This is a pledge, I'll receive no money. First, you will receive an email to validate
-            your address. When I've reached the goal you set, you will receive another email with a link to the charity website
-            and a button to confirm your donation.</div>
+            <div id="donate-button"><input type="submit" value="{% trans "Pledge to donate" %}"/></div>
+            <div id="pledge-disclaimer">{% blocktrans %}This is a pledge, I'll receive no money. First, you will receive an email to validate
+your address. When I've reached the goal you set, you will receive another email with a link to the charity website
+and a button to confirm your donation.{% endblocktrans %}</div>
             </form>
             <div id="pledge-loading" class="loading"></div>
             <div id="pledge-result">
@@ -99,10 +100,10 @@
     </div>
     <div class="pure-u-1-3">
         <div id="info-box">
-            <h1>Share</h1>
-            <div id="help">Help me, help them</div>
+            <h1>{% trans "Share" %}</h1>
+            <div id="help">{% trans "Help me, help them" %}</div>
             <div id="logo">{% if profile.current_beneficiary.logo %}<a href="{{ profile.current_beneficiary.url }}" target="_blank"><img src="{{ profile.current_beneficiary.logo.url }}" /></a>{% endif %}</div>
-            <div id="spread">Spread the word</div>
+            <div id="spread">{% trans "Spread the word" %}</div>
             <div id="share-buttons">
                 <span class='st_facebook_large' displayText='Facebook'></span>
                 <span class='st_twitter_large' displayText='Tweet'></span>
@@ -115,10 +116,21 @@
 </div>
 
 <script type="text/javascript">
+FlipClock.Lang['{{ LANGUAGE_CODE }}'] = {
+    'years'   : '{% trans "Years" %}',
+    'months'  : '{% trans "Months" %}',
+    'days'    : '{% trans "Days" %}',
+    'hours'   : '{% trans "Hours" %}',
+    'minutes' : '{% trans "Minutes" %}',
+    'seconds' : '{% trans "Seconds" %}'
+
+};
+
 var clock = $('#clock').FlipClock({
     clockFace: 'DailyCounter',
     showSeconds: false,
-    autoStart: false
+    autoStart: false,
+    language: '{{ LANGUAGE_CODE }}'
 });
 clock.setTime({{ profile.duration_in_sec }});
 clock.start();
@@ -155,9 +167,9 @@ $('#pledge-form').submit(function(e){
   function drawChart() {
     var data = google.visualization.arrayToDataTable([
       ['Origin', 'Amount (in {{ profile.currency }})'],
-      ['My donations',  {v: {{ profile.amount_pledged|floatformat:"0" }}, f: '{{ profile.currency }}{{ profile.amount_pledged|floatformat:"0" }}'}],
-      ['Your donations',  {v: {{ profile.supporter_donations }}, f: '{{ profile.currency }}{{ profile.supporter_donations }}'}],
-      ['Your pledges', {v: {{ profile.supporter_pledges }}, f: '{{ profile.currency }}{{ profile.supporter_pledges }}'}],
+      ['{% trans "My donations" %}',  {v: {{ profile.amount_pledged|floatformat:"0" }}, f: '{{ profile.currency }}{{ profile.amount_pledged|floatformat:"0" }}'}],
+      ['{% trans "Your donations" %}',  {v: {{ profile.supporter_donations }}, f: '{{ profile.currency }}{{ profile.supporter_donations }}'}],
+      ['{% trans "Your pledges" %}', {v: {{ profile.supporter_pledges }}, f: '{{ profile.currency }}{{ profile.supporter_pledges }}'}],
     ]);
 
   var options = {

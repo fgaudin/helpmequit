@@ -10,6 +10,7 @@ import random
 import string
 from django.core import validators
 import re
+from django.core.urlresolvers import reverse
 
 
 class ProfileManager(models.Manager):
@@ -51,16 +52,20 @@ class Profile(models.Model):
         validators=[
             validators.RegexValidator(re.compile('^[\w.]+$'), _('Only letters, numbers and . are accepted.'), 'invalid')
         ])
-    quit_date = models.DateTimeField()
-    cigarettes_per_day = models.PositiveIntegerField()
-    pack_price = models.DecimalField(max_digits=5, decimal_places=2)
-    pack_size = models.PositiveIntegerField()
-    donation_percentage = models.PositiveIntegerField(default=100)
-    currency = models.CharField(max_length=10, default='$')
-    current_beneficiary = models.ForeignKey('Beneficiary')
-    testimony = models.TextField()
-    video_embed_url = models.URLField(null=True, blank=True)
-    picture = models.ImageField(upload_to=get_profile_upload_path, null=True, blank=True)
+    quit_date = models.DateTimeField(verbose_name=_('Quit date'))
+    cigarettes_per_day = models.PositiveIntegerField(verbose_name=_('Cigarettes per day'))
+    pack_price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name=_('Pack price'))
+    pack_size = models.PositiveIntegerField(verbose_name=_('Pack size'))
+    donation_percentage = models.PositiveIntegerField(default=100, verbose_name=_('Donation percentage'))
+    currency = models.CharField(max_length=10, default='$', verbose_name=_('Currency'))
+    current_beneficiary = models.ForeignKey('Beneficiary', verbose_name=_('Beneficiary'))
+    testimony = models.TextField(verbose_name=_('Testimony'))
+    video_embed_url = models.URLField(null=True, blank=True, verbose_name=_('Video embed url'))
+    picture = models.ImageField(upload_to=get_profile_upload_path, null=True, blank=True, verbose_name=_('Picture'))
+    language = models.CharField(max_length=8,
+                                choices=settings.LANGUAGES,
+                                verbose_name=_('Language'),
+                                default='en')
 
     objects = ProfileManager()
 
@@ -111,6 +116,10 @@ class Profile(models.Model):
             + self.supporter_donations()\
             + self.supporter_pledges()
 
+    def link(self):
+        return '<a href="%s">%s</a>' % (reverse('user', args=[self.slug]),
+                                        self.user.first_name)
+
 
 def get_banner_upload_path(instance, filename):
     return os.path.join('u',
@@ -128,16 +137,26 @@ def get_logo_upload_path(instance, filename):
 
 class Beneficiary(models.Model):
     quitter = models.ForeignKey(User)
-    name = models.CharField(max_length=255)
-    url = models.URLField()
-    donate_url = models.URLField()
-    banner = models.ImageField(upload_to=get_banner_upload_path, null=True, blank=True)
+    name = models.CharField(max_length=255, verbose_name=_('Name'))
+    url = models.URLField(verbose_name=_('Url'))
+    donate_url = models.URLField(verbose_name=_('Donate url'))
+    banner = models.ImageField(upload_to=get_banner_upload_path,
+                               null=True,
+                               blank=True,
+                               verbose_name=_('Banner'))
     banner_font_theme = models.CharField(max_length=10,
                                          choices=(('', _('dark')), ('light', _('light'))),
                                          blank=True,
-                                         default='')
-    banner_copyright = models.CharField(max_length=255, blank=True, default='')
-    logo = models.ImageField(upload_to=get_logo_upload_path, null=True, blank=True)
+                                         default='',
+                                         verbose_name=_('Font color'))
+    banner_copyright = models.CharField(max_length=255,
+                                        blank=True,
+                                        default='',
+                                        verbose_name=_('Banner copyright'))
+    logo = models.ImageField(upload_to=get_logo_upload_path,
+                             null=True,
+                             blank=True,
+                             verbose_name=_('Logo'))
 
     def __unicode__(self):
         return u"%s" % (self.name)
@@ -151,3 +170,7 @@ class Beneficiary(models.Model):
                                              banner_font_theme=self.banner_font_theme,
                                              banner_copyright=self.banner_copyright,
                                              logo=self.logo)
+
+    def link(self):
+        return '<a href="%s" target="_blank">%s</a>' % (self.url,
+                                                        self.name)

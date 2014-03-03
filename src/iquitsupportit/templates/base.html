@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,9 +25,9 @@
             <div class="pure-u-1-2"></div>
             <div class="pure-u-1-2 header">
             {% if user.is_authenticated %}
-                <div id="loggedin-menu" class="menu"><a href="{% url "me" %}">View your page</a> <a href="{% url "edit" %}">Edit your page</a> <a href="{% url "logout" %}">Logout</a></div>
+                <div id="loggedin-menu" class="menu"><a href="{% url "me" %}">{% trans "View your page" %}</a> <a href="{% url "edit" %}">{% trans "Edit your page" %}</a> <a href="{% url "logout" %}">{% trans "Logout" %}</a></div>
             {% else %}
-                <div id="login-link" class="menu">Quitting too and want your own page? <a href="{% url "home" %}" id="signup">Sign up</a></div>
+                <div id="login-link" class="menu">{% trans "Quitting too and want your own page?" %} <a href="{% url "home" %}" id="signup">{% trans "Sign up" %}</a></div>
             {% endif %}
             </div>
         </div>
