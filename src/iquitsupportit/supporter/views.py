@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 import json
-from django.utils.translation import gettext as _
+from django.utils.translation import ugettext as _
 import uuid
 from supporter.models import Pledge
 from django.contrib import messages
