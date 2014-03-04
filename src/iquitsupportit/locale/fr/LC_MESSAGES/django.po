@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-02 23:40-0800\n"
+"POT-Creation-Date: 2014-03-03 00:34-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -301,6 +301,12 @@ msgstr "Définir votre mot de passe"
 msgid "Update password"
 msgstr "Mettre à jour"
 
+#: quitter/templates/quitter/index.html:5
+#, python-format
+msgid ""
+"Support %(first_name)s for quitting smoking by supporting %(beneficiary)s"
+msgstr "Aidez %(first_name)s à arrêter de fumer en soutenant %(beneficiary)s"
+
 #: quitter/templates/quitter/index.html:10
 msgid "Hello"
 msgstr "Bonjour"
@@ -321,6 +327,11 @@ msgstr "et %(percentage)s%% de ce que j'économise est pour"
 #: quitter/templates/quitter/index.html:31
 msgid "With your help, I've raised:"
 msgstr "Avec votre aide, j'ai récolté"
+
+#: quitter/templates/quitter/index.html:32
+#, python-format
+msgid "%(currency)s%(amount)s"
+msgstr "%(amount)s%(currency)s"
 
 #: quitter/templates/quitter/index.html:58
 msgid "Donations"
