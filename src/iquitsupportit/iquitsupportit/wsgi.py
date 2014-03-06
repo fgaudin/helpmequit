@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 
 import os
 import sys
-sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                             'src',
-                             'iquitsupportit'))
+ppath = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                     'src',
+                     'iquitsupportit')
+print ppath
+sys.path.append(ppath)
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "iquitsupportit.settings_prod")
 
