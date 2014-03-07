@@ -17,10 +17,10 @@ DATABASES = {
     }
 }
 
-EMAIL_HOST = 'localhost'
+EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'contact@helpmequ.it'
-EMAIL_HOST_PASSWORD = 'W|X<pud!j:oW17R7`6E,8GVT'
+EMAIL_HOST_USER = 'helpmequit'
+EMAIL_HOST_PASSWORD = 'bluk0jrekIsjefEldIdf3fop'
 EMAIL_USE_TLS = True
 
 AWS_STORAGE_BUCKET_NAME = 'helpmequit-users'

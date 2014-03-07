@@ -10,7 +10,6 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 import os
 import sys
 ppath = os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                     'src',
                      'iquitsupportit')
 sys.path.append(ppath)
 
