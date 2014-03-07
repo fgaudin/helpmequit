@@ -20,11 +20,11 @@ def tag(message='Deployment'):
 
 def push_to_gandi():
     local('git push gandi master')
-    local('git push gandi--tags')
+    local('git push gandi --tags')
 
 @hosts(git_host)
-def deploy_tag(tag):
-    run('deploy default.git')
+def deploy_tag(deploy_tag):
+    run('deploy default.git %s' % (deploy_tag))
 
 def migrate():
     with cd(os.path.join(base_dir, code_dir, 'src', 'iquitsupportit')):
@@ -33,8 +33,8 @@ def migrate():
 
 
 def deploy():
-    deploy_tag = tag()
+    t = tag()
     push_to_gandi()
-    deploy_tag(deploy_tag)
+    deploy_tag(t)
     # migrate()
 
