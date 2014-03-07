@@ -2,8 +2,10 @@ from fabric.operations import local, run, sudo
 from fabric.state import env
 from fabric.context_managers import cd, prefix
 import os
+from fabric.decorators import hosts
 
-env.hosts = ['alf@alfbox.net']
+git_host = ['1276965@git.dc0.gpaas.net']
+console_host = ['1276965@console.dc0.gpaas.net']
 
 base_dir = '/var/www/sites/iquit'
 code_dir = 'src/helpmequit'
@@ -17,33 +19,22 @@ def tag(message='Deployment'):
     return new_tag
 
 def push_to_gandi():
-    pass
+    local('git push gandi master')
+    local('git push gandi--tags')
 
+@hosts(git_host)
 def deploy_tag(tag):
-    pass
-
-def pull(tag):
-    with cd(os.path.join(base_dir, code_dir)):
-        run('git checkout master')
-        run('git pull')
-        run('git checkout %s' % (tag))
-
-def requirements():
-    with prefix('source %s/bin/activate' % (base_dir)):
-        run('pip install -r %s' % os.path.join(base_dir, code_dir, 'src', 'requirements.txt'))
+    run('deploy default.git')
 
 def migrate():
     with cd(os.path.join(base_dir, code_dir, 'src', 'iquitsupportit')):
         with prefix('source %s/bin/activate' % (base_dir)):
             run('python manage.py migrate --settings=iquitsupportit.settings_prod')
 
-def reload():
-    sudo('/etc/init.d/apache2 reload')
 
 def deploy():
     deploy_tag = tag()
     push_to_gandi()
     deploy_tag(deploy_tag)
-    reload()
-    migrate()
+    # migrate()
 
