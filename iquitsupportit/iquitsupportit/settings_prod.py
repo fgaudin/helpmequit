@@ -2,8 +2,10 @@ from iquitsupportit.settings import *
 
 DEBUG = False
 TEMPLATE_DEBUG = False
+
 ALLOWED_HOSTS = ['.helpmequ.it',
                  '.iquitsupport.us',
+                 '.url-de-test.ws'
                  ]
 
 DATABASES = {
