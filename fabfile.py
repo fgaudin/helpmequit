@@ -42,8 +42,8 @@ def reload():
 
 def deploy():
     deploy_tag = tag()
-    pull(deploy_tag)
-    requirements()
-    migrate()
+    push_to_gandi()
+    deploy_tag(deploy_tag)
     reload()
+    migrate()
 

@@ -1,1 +1,1 @@
-src/iquitsupportit/iquitsupportit/wsgi.py
+iquitsupportit/iquitsupportit/wsgi.py
