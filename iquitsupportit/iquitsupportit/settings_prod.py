@@ -14,7 +14,7 @@ DATABASES = {
         'NAME': 'la_base_des_dons',
         'USER': 'le_plus_fumeur',
         'PASSWORD': 'yoighImAmNojLetFagCisulp',
-        'HOST': '',
+        'HOST': '127.0.0.1',
         'PORT': '',
     }
 }
