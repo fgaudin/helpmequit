@@ -16,6 +16,12 @@ def tag(message='Deployment'):
     local('git push --tags')
     return new_tag
 
+def push_to_gandi():
+    pass
+
+def deploy_tag(tag):
+    pass
+
 def pull(tag):
     with cd(os.path.join(base_dir, code_dir)):
         run('git checkout master')

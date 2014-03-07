@@ -12,7 +12,6 @@ import sys
 ppath = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                      'src',
                      'iquitsupportit')
-print ppath
 sys.path.append(ppath)
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "iquitsupportit.settings_prod")
