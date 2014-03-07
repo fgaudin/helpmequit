@@ -4,8 +4,8 @@ from fabric.context_managers import cd, prefix
 import os
 from fabric.decorators import hosts
 
-git_host = ['1276965@git.dc0.gpaas.net']
-console_host = ['1276965@console.dc0.gpaas.net']
+git_host = '1276965@git.dc0.gpaas.net'
+console_host = '1276965@console.dc0.gpaas.net'
 
 base_dir = '/var/www/sites/iquit'
 code_dir = 'src/helpmequit'
@@ -24,7 +24,7 @@ def push_to_gandi():
 
 @hosts(git_host)
 def deploy_tag(deploy_tag):
-    run('deploy default.git %s' % (deploy_tag))
+    run('deploy default.git')
 
 def migrate():
     with cd(os.path.join(base_dir, code_dir, 'src', 'iquitsupportit')):
