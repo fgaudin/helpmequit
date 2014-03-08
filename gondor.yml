@@ -32,18 +32,18 @@ wsgi:
     #
     # wsgi = the Python module which should be importable
     # application = the callable in the Python module
-    entry_point: iquitsupportit.wsgi:application
-    
+    entry_point: iquitsupportit.iquitsupportit.wsgi:application
+
     # Options for gunicorn which runs your WSGI project.
     gunicorn:
         # The worker class used to run gunicorn (possible values include:
         # sync, eventlet and gevent)
         worker_class: sync
-    
+
     # Determines whether to use virtual environment caching to speed up
     # deployments (will only install new dependencies; use gondor deploy
     # --fresh to deploy to rebuild the virtual environment)
     use_environment_cache: true
 
 django:
-    managepy: manage.py
+    managepy:iquitsupportit/manage.py
