@@ -46,4 +46,4 @@ wsgi:
     use_environment_cache: true
 
 django:
-    managepy:iquitsupportit/manage.py
+    managepy: iquitsupportit/manage.py
