@@ -9,6 +9,8 @@ ALLOWED_HOSTS = ['.helpmequ.it',
                  '.url-de-test.ws'
                  ]
 
+SITE_ID = 1
+
 if "GONDOR_DATABASE_URL" in os.environ:
     urlparse.uses_netloc.append("postgres")
     url = urlparse.urlparse(os.environ["GONDOR_DATABASE_URL"])

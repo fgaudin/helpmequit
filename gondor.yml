@@ -7,7 +7,7 @@ vcs: git
 framework: django
 
 # Python version to run on Gondor.
-runtime: python-2.7.3
+runtime: python-2.7.6
 
 # This path is relative to your project root (the directory gondor.yml lives in.)
 requirements_file: requirements.txt
