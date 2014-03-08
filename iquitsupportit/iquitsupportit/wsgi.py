@@ -13,7 +13,5 @@ ppath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 print ppath
 sys.path.append(ppath)
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "iquitsupportit.settings_prod")
-
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
