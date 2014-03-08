@@ -1,1 +1,0 @@
-iquitsupportit/iquitsupportit/wsgi.py
