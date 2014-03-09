@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-03 00:34-0800\n"
+"POT-Creation-Date: 2014-03-09 15:24-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,87 +120,87 @@ msgstr "Email"
 msgid "Password"
 msgstr "Mot de passe"
 
-#: quitter/models.py:53
+#: quitter/models.py:52
 msgid "Only letters, numbers and . are accepted."
 msgstr "Seuls les lettres, nombre et le . sont acceptés."
 
-#: quitter/models.py:55
+#: quitter/models.py:54
 msgid "Quit date"
 msgstr "Date d'arrêt"
 
-#: quitter/models.py:56
+#: quitter/models.py:55
 msgid "Cigarettes per day"
 msgstr "Cigarettes par jour"
 
-#: quitter/models.py:57
+#: quitter/models.py:56
 msgid "Pack price"
 msgstr "Prix d'un paquet"
 
-#: quitter/models.py:58
+#: quitter/models.py:57
 msgid "Pack size"
 msgstr "Taille d'un paquet"
 
-#: quitter/models.py:59
+#: quitter/models.py:58
 msgid "Donation percentage"
 msgstr "Pourcentage de don"
 
-#: quitter/models.py:60
+#: quitter/models.py:59
 msgid "Currency"
 msgstr "Monnaie"
 
-#: quitter/models.py:61
+#: quitter/models.py:60
 msgid "Beneficiary"
 msgstr "Bénéficiaire"
 
-#: quitter/models.py:62 quitter/templates/quitter/edit.html:103
+#: quitter/models.py:61 quitter/templates/quitter/edit.html:103
 msgid "Testimony"
 msgstr "Témoignage"
 
-#: quitter/models.py:63
+#: quitter/models.py:62
 msgid "Video embed url"
 msgstr "Url video"
 
-#: quitter/models.py:64
+#: quitter/models.py:63
 msgid "Picture"
 msgstr "Image"
 
-#: quitter/models.py:67
+#: quitter/models.py:66
 msgid "Language"
 msgstr "Langue"
 
-#: quitter/models.py:140
+#: quitter/models.py:139
 msgid "Name"
 msgstr "Nom"
 
-#: quitter/models.py:141
+#: quitter/models.py:140
 msgid "Url"
 msgstr "Url"
 
-#: quitter/models.py:142
+#: quitter/models.py:141
 msgid "Donate url"
 msgstr "Url de don"
 
-#: quitter/models.py:146
+#: quitter/models.py:145
 msgid "Banner"
 msgstr "Bannière"
 
-#: quitter/models.py:148
+#: quitter/models.py:147
 msgid "dark"
 msgstr "sombre"
 
-#: quitter/models.py:148
+#: quitter/models.py:147
 msgid "light"
 msgstr "clair"
 
-#: quitter/models.py:151
+#: quitter/models.py:150
 msgid "Font color"
 msgstr "Couleur de la police"
 
-#: quitter/models.py:155
+#: quitter/models.py:154
 msgid "Banner copyright"
 msgstr "Copyright de la bannière"
 
-#: quitter/models.py:159
+#: quitter/models.py:158
 msgid "Logo"
 msgstr "Logo"
 
@@ -329,6 +329,9 @@ msgid "With your help, I've raised:"
 msgstr "Avec votre aide, j'ai récolté"
 
 #: quitter/templates/quitter/index.html:32
+#: quitter/templates/quitter/index.html:170
+#: quitter/templates/quitter/index.html:171
+#: quitter/templates/quitter/index.html:172
 #, python-format
 msgid "%(currency)s%(amount)s"
 msgstr "%(amount)s%(currency)s"
@@ -418,6 +421,39 @@ msgstr "Vos dons"
 msgid "Your pledges"
 msgstr "Vos promesses"
 
+#: quitter/templates/quitter/signup/email.html:12
+#: quitter/templates/quitter/signup/email.txt:2
+msgid "Thank you!"
+msgstr "Merci !"
+
+#: quitter/templates/quitter/signup/email.html:13
+#: quitter/templates/quitter/signup/email.txt:4
+msgid ""
+"To confirm your signup and your email address, please click on the following "
+"link:"
+msgstr "Pour confirmer votre inscription and votre adresse email, veuillez cliquer sur le lien suivant :"
+
+#: quitter/templates/quitter/signup/email.html:18
+#: supporter/templates/email/confirm.html:20
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: quitter/templates/quitter/signup/email.html:20
+#: supporter/templates/email/confirm.html:22
+#, python-format
+msgid "or click the following link: %(url)s"
+msgstr "ou cliquez  sur le lien suivant : %(url)s"
+
+#: quitter/templates/quitter/signup/email.html:25
+#: quitter/templates/quitter/signup/email.txt:8
+msgid "After setting your password, you will be able to set up your page."
+msgstr "Après avoir défini votre mot de passe, vous pourrez configurer votre page."
+
+#: quitter/templates/quitter/signup/email.html:26
+#: quitter/templates/quitter/signup/email.txt:10
+msgid "Good luck!"
+msgstr "Bonne chance !"
+
 #: supporter/forms.py:7
 msgid "Your email"
 msgstr "Votre email"
@@ -426,11 +462,11 @@ msgstr "Votre email"
 msgid "Amount"
 msgstr "Montant"
 
-#: supporter/views.py:47
+#: supporter/views.py:50
 msgid "Please confirm your pledge"
 msgstr "Veuillez confirmer votre promesse de don"
 
-#: supporter/views.py:69
+#: supporter/views.py:72
 msgid ""
 "Thank you! Check your <strong>emails</strong> to confirm your pledge. Check "
 "your spam folder too if you haven't received it."
@@ -438,11 +474,11 @@ msgstr ""
 "Merci! Vérifiez vos <strong>emails</strong> pour confirmer votre promesse de "
 "don. Vérifiez votre dossier 'indésirables' si vous ne l'avez pas recu."
 
-#: supporter/views.py:82
+#: supporter/views.py:85
 msgid "Thank you! Your pledge has been confirmed."
 msgstr "Merci! Votre promesse de don a été confirmée."
 
-#: supporter/views.py:92
+#: supporter/views.py:95
 msgid "Thank you! Your donation has been recorded."
 msgstr "Merci! Votre don a été enregistré."
 
@@ -481,15 +517,6 @@ msgstr ""
 "Nous vous prions de bien vouloir confirmer votre promesse pour que nous "
 "puissions vous envoyer un rappel et un lien quand %(first_name)s atteindra "
 "ce but."
-
-#: supporter/templates/email/confirm.html:20
-msgid "Confirm"
-msgstr "Confirmer"
-
-#: supporter/templates/email/confirm.html:22
-#, python-format
-msgid "or click the following link: %(url)s"
-msgstr "ou cliquez  sur le lien suivant : %(url)s"
 
 #: supporter/templates/email/confirm.html:27
 #: supporter/templates/email/confirm.txt:11
