@@ -8,6 +8,7 @@ from django.core.mail.message import EmailMultiAlternatives
 from django.utils.timezone import now
 from context_processors import settings_variables
 from django.http.request import HttpRequest
+from django.utils import translation
 
 
 class Command(BaseCommand):
@@ -19,6 +20,7 @@ class Command(BaseCommand):
         from_email = settings.DEFAULT_FROM_EMAIL
         quitters = Profile.objects.all()
         for quitter in quitters:
+            translation.activate(quitter.language)
             duration = quitter.duration()
             pledges = Pledge.objects.filter(confirmed=True,
                                             honored=False,

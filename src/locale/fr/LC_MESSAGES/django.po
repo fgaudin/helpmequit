@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-09 15:24-0700\n"
+"POT-Creation-Date: 2014-03-09 16:39-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -431,7 +431,9 @@ msgstr "Merci !"
 msgid ""
 "To confirm your signup and your email address, please click on the following "
 "link:"
-msgstr "Pour confirmer votre inscription and votre adresse email, veuillez cliquer sur le lien suivant :"
+msgstr ""
+"Pour confirmer votre inscription and votre adresse email, veuillez cliquer "
+"sur le lien suivant :"
 
 #: quitter/templates/quitter/signup/email.html:18
 #: supporter/templates/email/confirm.html:20
@@ -447,7 +449,8 @@ msgstr "ou cliquez  sur le lien suivant : %(url)s"
 #: quitter/templates/quitter/signup/email.html:25
 #: quitter/templates/quitter/signup/email.txt:8
 msgid "After setting your password, you will be able to set up your page."
-msgstr "Après avoir défini votre mot de passe, vous pourrez configurer votre page."
+msgstr ""
+"Après avoir défini votre mot de passe, vous pourrez configurer votre page."
 
 #: quitter/templates/quitter/signup/email.html:26
 #: quitter/templates/quitter/signup/email.txt:10
@@ -527,6 +530,56 @@ msgstr "Cordialement,"
 #, python-format
 msgid "Confirm: %(url)s"
 msgstr "Confirmer : %(url)s"
+
+#: supporter/templates/email/honor.html:12
+#: supporter/templates/email/honor.txt:2
+msgid "Hi!"
+msgstr "Bonjour !"
+
+#: supporter/templates/email/honor.html:13
+#: supporter/templates/email/honor.txt:4
+#, python-format
+msgid "%(first_name)s hasn't smoked for %(days)s days."
+msgstr "%(first_name)s n'a pas fumé depuis %(days)s jours."
+
+#: supporter/templates/email/honor.html:14
+#: supporter/templates/email/honor.txt:6
+#, python-format
+msgid "You pledged to donate %(currency)s%(amount)s to %(beneficiary)s."
+msgstr "Vous avez promis de donner %(amount)s%(currency)s pour %(beneficiary)s"
+
+#: supporter/templates/email/honor.html:16
+#: supporter/templates/email/honor.txt:8
+msgid "Follow these two steps and you're done:"
+msgstr "Suivez ces deux étapes et c'est terminé:"
+
+#: supporter/templates/email/honor.html:22
+msgid "Donate"
+msgstr "Faites votre don"
+
+#: supporter/templates/email/honor.html:23
+msgid "Confirm your donation"
+msgstr "Confirmez votre don"
+
+#: supporter/templates/email/honor.html:26
+#, python-format
+msgid "or click the following links: %(donate_url)s and %(url)s"
+msgstr "ou cliquez  sur les liens suivants : %(donate_url)s et %(url)s"
+
+#: supporter/templates/email/honor.html:31
+#: supporter/templates/email/honor.txt:13
+msgid "A big thank you!"
+msgstr "Un grand merci !"
+
+#: supporter/templates/email/honor.txt:10
+#, python-format
+msgid "donate here: %(url)s"
+msgstr "faites votre don ici : %(url)s"
+
+#: supporter/templates/email/honor.txt:11
+#, python-format
+msgid "confirm your donation here: %(url)s"
+msgstr "confirmez votre don ici : %(url)s"
 
 #: templates/base.html:28
 msgid "View your page"

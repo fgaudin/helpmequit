@@ -1,15 +1,16 @@
-Hey!
+{% load i18n %}
+{% trans "Hi!" %}
 
-{{ pledge.beneficiary.quitter.first_name }} hasn't smoked for {{ pledge.days }} days.
+{% blocktrans with first_name=pledge.beneficiary.quitter.first_name days=pledge.days %}{{ first_name }} hasn't smoked for {{ days }} days.{% endblocktrans %}
 
-You pledged to donate {{ pledge.beneficiary.quitter.profile.currency }}{{ pledge.amount }} to {{ pledge.beneficiary.name }}.
+{% blocktrans with currency=pledge.beneficiary.quitter.profile.currency amount=pledge.amount beneficiary=pledge.beneficiary.name %}You pledged to donate {{ currency }}{{ amount }} to {{ beneficiary }}.{% endblocktrans %}
 
-Follow these two steps and you're done:
+{% trans "Follow these two steps and you're done:" %}
 
-- Donate here: {{ pledge.beneficiary.donate_url }}
-- Confirm your donation here: {{ url }}
+- {% blocktrans with url=pledge.beneficiary.donate_url %}donate here: {{ url }}{% endblocktrans %}
+- {% blocktrans %}confirm your donation here: {{ url }}{% endblocktrans %}
 
-A big thank you!
+{% trans "A big thank you!" %}
 
 {{ signature }}
 {{ website_url }}
