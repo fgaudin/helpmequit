@@ -140,7 +140,8 @@ AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
                            'auth2.backends.EmailBackend',
                            'auth2.backends.TokenBackend',)
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 's3utils.MediaRootS3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAJZHQWOAUZLNWQ7KQ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'test-helpmequit-users'
+AWS_PRELOAD_METADATA = True

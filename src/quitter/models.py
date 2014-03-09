@@ -40,8 +40,7 @@ class ProfileManager(models.Manager):
 
 
 def get_profile_upload_path(instance, filename):
-    return os.path.join('u',
-                        '%d' % instance.user.id,
+    return os.path.join('%d' % instance.user.id,
                         'pic',
                         '%s_%s' % (uuid.uuid4(), filename))
 

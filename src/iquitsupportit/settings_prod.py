@@ -35,6 +35,9 @@ EMAIL_HOST_PASSWORD = 'bluk0jrekIsjefEldIdf3fop'
 EMAIL_USE_TLS = True
 
 AWS_STORAGE_BUCKET_NAME = 'helpmequit-users'
+STATIC_URL = '//%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
+ADMIN_MEDIA_PREFIX = STATIC_URL = '//%s.s3.amazonaws.com/static/admin/' % AWS_STORAGE_BUCKET_NAME
+STATICFILES_STORAGE = 's3utils.StaticRootS3BotoStorage'
 
 # MEDIA_ROOT = os.path.join(os.environ["GONDOR_DATA_DIR"], "site_media", "media")
 # STATIC_ROOT = os.path.join(os.environ["GONDOR_DATA_DIR"], "site_media", "static")
