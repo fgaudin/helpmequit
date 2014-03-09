@@ -379,7 +379,7 @@ msgstr "Partagez"
 
 #: quitter/templates/quitter/index.html:104
 msgid "Help me, help them"
-msgstr "Aidez moi, aidez les"
+msgstr "Aidez moi, aidez les !"
 
 #: quitter/templates/quitter/index.html:106
 msgid "Spread the word"
