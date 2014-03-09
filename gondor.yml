@@ -32,7 +32,7 @@ wsgi:
     #
     # wsgi = the Python module which should be importable
     # application = the callable in the Python module
-    entry_point: iquitsupportit.iquitsupportit.wsgi:application
+    entry_point: src.iquitsupportit.wsgi:application
 
     # Options for gunicorn which runs your WSGI project.
     gunicorn:
@@ -46,4 +46,4 @@ wsgi:
     use_environment_cache: true
 
 django:
-    managepy: iquitsupportit/manage.py
+    managepy: src/manage.py
