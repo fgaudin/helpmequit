@@ -6,7 +6,8 @@ TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['.helpmequ.it',
                  '.iquitsupport.us',
-                 '.url-de-test.ws'
+                 '.url-de-test.ws',
+                 'xb999.gondor.co'
                  ]
 
 SITE_ID = 1
