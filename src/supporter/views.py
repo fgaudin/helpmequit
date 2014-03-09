@@ -17,6 +17,7 @@ from django.template.loader import render_to_string
 from django.core.mail.message import EmailMultiAlternatives
 from django.template.context import RequestContext
 import hashlib
+from django.utils import translation
 
 
 @csrf_exempt
@@ -26,6 +27,8 @@ def pledge_create(request, beneficiary_id):
         return HttpResponseNotAllowed(['POST'])
 
     beneficiary = get_object_or_404(Beneficiary, pk=beneficiary_id)
+    translation.activate(beneficiary.quitter.profile.language)
+
     form = PledgeForm(request.POST)
     if form.is_valid():
         email = form.cleaned_data['email']
