@@ -24,9 +24,10 @@ class Command(BaseCommand):
             duration = quitter.duration()
             pledges = Pledge.objects.filter(confirmed=True,
                                             honored=False,
-                                            days__lte=duration.days)
+                                            days__lte=duration.days,
+                                            beneficiary__quitter=quitter.user)
 
-            self.stdout.write("%d pledges" % (len(pledges)))
+            self.stdout.write("%d pledges for %s" % (len(pledges), quitter.user.email))
 
             for pledge in pledges:
                 if pledge.should_send():
