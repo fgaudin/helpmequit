@@ -11,7 +11,7 @@
         <script src="{% static "js/jquery-1.11.0.min.js" %}"></script>
 
         <meta property="og:site_name" content="Help Me Quit">
-        <meta property="og:url" content="http://helpmequ.it">
+        <meta property="og:url" content="{{ website_url }}{% url "home" %}>
         <meta property="og:title" content="{% trans "Quit smoking and help a charity" %}">
         <meta property="og:image" content="{% static "img/logo_square.jpg" %}">
         <meta property="og:description" content="{% trans "Quit smoking, get support, donate to your favorite charity" %}">
