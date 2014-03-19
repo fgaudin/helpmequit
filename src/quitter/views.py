@@ -18,7 +18,7 @@ from django.contrib.auth.decorators import login_required
 import requests
 from bs4 import BeautifulSoup
 from auth2.models import EmailAccount
-from auth2.backends import EmailBackend
+from auth2.backends import EmailBackend, TokenBackend
 from django.utils import translation
 
 
@@ -148,7 +148,8 @@ def logout(request):
 def edit(request):
     backend_path = request.session[BACKEND_SESSION_KEY]
     backend = load_backend(backend_path)
-    is_email_auth = isinstance(backend, EmailBackend)
+    is_email_auth = isinstance(backend, EmailBackend) or \
+        isinstance(backend, TokenBackend)
 
     translation.activate(request.user.profile.language)
     context = {}

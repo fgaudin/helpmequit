@@ -46,7 +46,6 @@
                         <input type="submit" value="{% trans "Login" %}" id="home-login" class="pure-button"/>
                         <div class="alternative">{% blocktrans with link=signup_link|safe %}or {{ link }}{% endblocktrans %}</div>
                         </form>
-                        <div class="facebook-connect">or <a class="pure-button facebook-button" href="{% url "facebook_login" %}">Connect with Facebook</a></div>
                         {% endif %}
                     </div>
                 </div>
