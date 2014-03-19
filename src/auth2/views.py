@@ -11,6 +11,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
+import logging
 
 AUTHORIZATION_URL = 'https://www.facebook.com/dialog/oauth?scope=email'
 TOKEN_URL = 'https://graph.facebook.com/oauth/access_token'
@@ -37,6 +38,7 @@ def facebook_login(request):
 def _fetch_token(request):
     oauth2_session = init_oauth2_session(request)
     redirect_response = request.build_absolute_uri()
+    logging.info(redirect_response)
     # TODO handle errors
     return oauth2_session.fetch_token(TOKEN_URL,
         client_secret=settings.FACEBOOK_CLIENT_SECRET,
