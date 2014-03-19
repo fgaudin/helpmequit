@@ -22,7 +22,7 @@ oauth2_session = None
 
 def init_oauth2_session(request):
     oauth2_session = OAuth2Session(settings.FACEBOOK_CLIENT_ID,
-            redirect_uri='%s%s' % (settings_variables(request)['website_url'],
+            redirect_uri='%s%s' % ('https://xb999.gondor.co',
                                    reverse('facebook_complete')))
     oauth2_session = facebook_compliance_fix(oauth2_session)
     return oauth2_session
