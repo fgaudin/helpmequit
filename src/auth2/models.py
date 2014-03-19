@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 import hashlib
 import uuid
 import re
+from quitter.models import Profile
 
 
 FIRSTNAME_REGEX = re.compile('(\w+)')
@@ -45,3 +46,29 @@ class EmailAccount(models.Model):
 
     def set_hash(self, hash):
         self.hash = hashlib.sha1(str(hash)).hexdigest()
+
+
+class FacebookAccountManager(models.Manager):
+    def get_or_create_account(self, user_data):
+        try:
+            return self.get(uuid=user_data[0])
+        except FacebookAccount.DoesNotExist as e:
+            user = User.objects.create_user(hashlib.sha256(str(uuid.uuid4())).hexdigest()[:30], user_data[1]['email'], '!')
+            user.first_name = user_data[1]['first_name'].lower().capitalize()
+            user.set_unusable_password()
+            user.save()
+
+            account = FacebookAccount(user=user,
+                                      uuid=user_data[0])
+            account.save()
+
+            Profile.objects.create_profile(user)
+
+            return account
+
+
+class FacebookAccount(models.Model):
+    user = models.ForeignKey(User)
+    uuid = models.CharField(max_length=255, unique=True)
+
+    objects = FacebookAccountManager()

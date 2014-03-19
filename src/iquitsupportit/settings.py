@@ -138,10 +138,14 @@ DEFAULT_I18N_PROFILES = {
 
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
                            'auth2.backends.EmailBackend',
-                           'auth2.backends.TokenBackend',)
+                           'auth2.backends.TokenBackend',
+                           'auth2.backends.FacebookBackend',)
 
 DEFAULT_FILE_STORAGE = 's3utils.MediaRootS3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAJZHQWOAUZLNWQ7KQ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'test-helpmequit-users'
 AWS_PRELOAD_METADATA = True
+
+FACEBOOK_CLIENT_ID = '617178151691257'
+FACEBOOK_CLIENT_SECRET = 'e1935951369bf9dae8c91b59d0af96ad'

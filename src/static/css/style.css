@@ -394,8 +394,8 @@ body {
     border-radius: 10px;
 }
 #home-signup,
-#home-login {
-    font-size: 1.4em;
+#home-login,
+.facebook-button {
     padding-left: 1em;
     padding-right: 1em;
     border-radius: 10px;
@@ -404,9 +404,25 @@ body {
     margin-right: 0.1em;
 }
 
+#home-signup,
+#home-login {
+    font-size: 1.4em;
+}
+
+.facebook-button {
+    background: #5972A8;
+}
+
 .home .alternative {
     font-size: 1.5em;
-    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.home .facebook-connect {
+    font-size: 1.5em;
+}
+
+.home #go-to-page {
+    font-size: 1.5em;
 }
 
 .home-block {

@@ -31,6 +31,9 @@
                         <h1>{% trans "Quit smoking" %}</h1>
                         <h2>{% trans "Get support" %}</h2>
                         <h3>{% trans "Donate to your favorite charity" %}</h3>
+                        {% if user.is_authenticated %}
+                        <div id="go-to-page"><a href="{% url "me" %}">{% trans "View your page" %} &rsaquo;</a></div>
+                        {% else %}
                         <form id="signup-form" class="pure-form" action="{% url "signup" %}" method="post">
                         {% csrf_token %}
                         {{ signup_form.email }}
@@ -43,6 +46,8 @@
                         <input type="submit" value="{% trans "Login" %}" id="home-login" class="pure-button"/>
                         <div class="alternative">{% blocktrans with link=signup_link|safe %}or {{ link }}{% endblocktrans %}</div>
                         </form>
+                        <div class="facebook-connect">or <a class="pure-button facebook-button" href="{% url "facebook_login" %}">Connect with Facebook</a></div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

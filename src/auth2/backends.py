@@ -1,7 +1,11 @@
 from django.contrib.auth.models import User
 import hashlib
 from django.contrib.auth.backends import ModelBackend
-from auth2.models import EmailAccount
+from auth2.models import EmailAccount, FacebookAccount
+from requests_oauthlib.oauth2_session import OAuth2Session
+from requests_oauthlib.compliance_fixes.facebook import facebook_compliance_fix
+from django.http.response import HttpResponseRedirect
+import requests
 
 
 class EmailBackend(ModelBackend):
@@ -15,6 +19,8 @@ class EmailBackend(ModelBackend):
             # difference between an existing and a non-existing user (#20760).
             User().set_password(password)
 
+        return None
+
 
 class TokenBackend(object):
     def authenticate(self, token=None):
@@ -26,9 +32,31 @@ class TokenBackend(object):
                 return account.user
             except EmailAccount.DoesNotExist:
                 pass
+        return None
 
     def get_user(self, user_id):
         try:
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:
-            return None
+            pass
+
+        return None
+
+
+class FacebookBackend(object):
+    def authenticate(self, uuid=None):
+        if uuid:
+            try:
+                account = FacebookAccount.objects.get(uuid=uuid)
+                return account.user
+            except FacebookAccount.DoesNotExist:
+                pass
+        return None
+
+    def get_user(self, user_id):
+        try:
+            return User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            pass
+        return None
+

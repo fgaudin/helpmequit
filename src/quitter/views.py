@@ -10,13 +10,15 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.mail.message import EmailMultiAlternatives
-from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
+from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout, \
+    BACKEND_SESSION_KEY, load_backend
 import uuid
 from django.db.transaction import commit_on_success
 from django.contrib.auth.decorators import login_required
 import requests
 from bs4 import BeautifulSoup
 from auth2.models import EmailAccount
+from auth2.backends import EmailBackend
 from django.utils import translation
 
 
@@ -144,6 +146,10 @@ def logout(request):
 @login_required
 @commit_on_success
 def edit(request):
+    backend_path = request.session[BACKEND_SESSION_KEY]
+    backend = load_backend(backend_path)
+    is_email_auth = isinstance(backend, EmailBackend)
+
     translation.activate(request.user.profile.language)
     context = {}
 
@@ -206,6 +212,7 @@ def edit(request):
     context['profile_form'] = profile_form
     context['beneficiary_form'] = beneficiary_form
     context['new_beneficiary_form'] = new_beneficiary_form
+    context['is_email_auth'] = is_email_auth
 
     return render_to_response('quitter/edit.html',
                               context,
