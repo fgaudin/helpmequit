@@ -39,6 +39,7 @@ def _fetch_token(request):
     oauth2_session = init_oauth2_session(request)
     redirect_response = request.build_absolute_uri()
     logging.info(redirect_response)
+    logging.info(request.get_full_path())
     # TODO handle errors
     return oauth2_session.fetch_token(TOKEN_URL,
         client_secret=settings.FACEBOOK_CLIENT_SECRET,
