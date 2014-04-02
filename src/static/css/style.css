@@ -77,6 +77,26 @@ body {
     color: #666;
 }
 
+#donation-summary {
+    text-align: center;
+    font-size: 0.8em;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+}
+
+#donation-summary #id_amount {
+    width: 60px;
+}
+
+#donation-summary .message {
+    padding: 10px;
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background: rgb(28, 184, 65);
+    display: none;
+}
+
 /* HELLO BOX */
 .hello-box {
     width: 300px;

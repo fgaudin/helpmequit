@@ -110,8 +110,7 @@ class Profile(models.Model):
         return self.supporter_donations() + self.supporter_pledges()
 
     def total_amount(self):
-        return self.amount_donated()\
-            + self.amount_pledged()\
+        return self.amount_pledged()\
             + self.supporter_donations()\
             + self.supporter_pledges()
 

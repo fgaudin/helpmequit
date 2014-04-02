@@ -14,31 +14,57 @@
     </head>
     <body>
         <div id="content">
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <div class="pure-g-r">
-            <div class="pure-u-1-2"></div>
-            <div class="pure-u-1-2 header">
-            {% if user.is_authenticated %}
-                <div id="loggedin-menu" class="menu"><a href="{% url "me" %}">{% trans "View your page" %}</a> <a href="{% url "edit" %}">{% trans "Edit your page" %}</a> <a href="{% url "logout" %}">{% trans "Logout" %}</a></div>
-            {% else %}
-                <div id="login-link" class="menu">{% trans "Quitting too and want your own page?" %} <a href="{% url "home" %}" id="signup">{% trans "Sign up" %}</a></div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
             {% endif %}
+            <div class="pure-g-r">
+                <div class="pure-u-1-2 header">
+                {% if user.is_authenticated %}
+                    <div id="loggedin-menu" class="menu"><a href="{% url "me" %}">{% trans "View your page" %}</a> <a href="{% url "edit" %}">{% trans "Edit your page" %}</a> <a href="{% url "logout" %}">{% trans "Logout" %}</a></div>
+                {% else %}
+                    <div id="login-link" class="menu">{% trans "Quitting too and want your own page?" %} <a href="{% url "home" %}" id="signup">{% trans "Sign up" %}</a></div>
+                {% endif %}
+                </div>
+                <div class="pure-u-1-2">
+                    <div id="donation-summary">
+                        <form class="pure-form" action="{% url "donate" %}" method="POST" id="donate-form">
+                            {% blocktrans with currency=user.profile.currency donated=user.profile.amount_donated to_donate=user.profile.amount_to_donate|floatformat:"0" %}Donated: {{ currency }}{{ donated }}, donate {{ currency }}<input type="number" required="true" min="1" placeholder="{{ to_donate }}" value="{{ to_donate }}" id="id_amount"/>{% endblocktrans %} <input type="submit" value="{% trans "Donate" %}" />
+                        </form>
+                        <div class="message"></div>
+                    </div>
+                </div>
+            </div>
+            {% block content %}
+            {% endblock %}
+            <div class="pure-g-r">
+                <div class="pure-u-1">
+                    {% include "footer.html" %}
+                </div>
             </div>
         </div>
-        {% block content %}
-        {% endblock %}
-        <div class="pure-g-r">
-            <div class="pure-u-1">
-                {% include "footer.html" %}
-            </div>
-        </div>
-        </div>
+        <script type="text/javascript">
+            $('#donate-form').submit(function(){
+                var amount = $('#id_amount').val();
+                var data = {'amount': amount}
+                console.log(data);
+                $.post($('#donate-form').attr('action'), data, function(response){
+                    if (response.status) {
+                        $('#donation-summary form').hide();
+                        $('#donation-summary .message').html(response.message);
+                        $('#donation-summary .message').show();
+                    } else {
+                        $('#donation-summary form').hide();
+                        $('#donation-summary .message').html(response.errors);
+                        $('#donation-summary .message').show();
+                    }
+                });
+                return false;
+            });
+        </script>
         {% include "scripts.html" %}
     </body>
 </html>

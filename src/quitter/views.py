@@ -20,6 +20,10 @@ from bs4 import BeautifulSoup
 from auth2.models import EmailAccount
 from auth2.backends import EmailBackend, TokenBackend
 from django.utils import translation
+from donation.forms import DonateForm
+from django.http.response import HttpResponse
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request, slug=None):
@@ -227,3 +231,23 @@ def beneficiary_form(request, id):
     return render_to_response('quitter/beneficiary_form.html',
                               {'form': beneficiary_form},
                               context_instance=RequestContext(request))
+
+
+@login_required
+@csrf_exempt
+@commit_on_success
+def donate(request):
+    response_data = {'status': False,
+                     'errors': _('An error occurred')}
+    if request.method == 'POST':
+        form = DonateForm(request.POST)
+        if form.is_valid():
+            payment = form.save(commit=False)
+            payment.quitter = request.user
+            payment.beneficiary = request.user.profile.current_beneficiary
+            payment.save()
+            response_data = {'status': True,
+                             'message': _('Good job! Keep going!')}
+
+    return HttpResponse(json.dumps(response_data),
+                        content_type="application/json")
