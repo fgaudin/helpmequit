@@ -4,3 +4,4 @@
 .settings
 gondor_env.sh
 ssl.*
+.coverage

@@ -116,6 +116,7 @@ def signup(request):
 def confirm_signup(request, hash):
     user = authenticate(token=hash)
     if user is not None:
+        messages.success(request, _('Your email has been successfully verified'))
         auth_login(request, user)
         return redirect(reverse('edit'))
     else:
