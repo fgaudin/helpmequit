@@ -125,4 +125,3 @@ class ProfileTestCase(TestCase):
         self.assertEqual(User.objects.count(), 2)
         self.assertEqual(Profile.objects.count(), 2)
         self.assertEqual(Beneficiary.objects.count(), 2)
-
