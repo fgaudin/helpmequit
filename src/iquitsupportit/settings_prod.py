@@ -6,7 +6,6 @@ TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['.helpmequ.it',
                  '.iquitsupport.us',
-                 '.url-de-test.ws',
                  'xb999.gondor.co'
                  ]
 
@@ -28,11 +27,11 @@ if "GONDOR_DATABASE_URL" in os.environ:
         }
     }
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'helpmequit'
-EMAIL_HOST_PASSWORD = 'bluk0jrekIsjefEldIdf3fop'
-EMAIL_USE_TLS = True
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_PORT = int(os.environ['EMAIL_PORT'])
+EMAIL_HOST_USER = os.environ['EMAIL_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
+EMAIL_USE_TLS = bool(os.environ['EMAIL_TLS'])
 
 AWS_STORAGE_BUCKET_NAME = 'helpmequit-users'
 STATIC_URL = '//%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME

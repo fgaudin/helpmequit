@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'skp&%n68!v!s1pzv##u#n32pqwnrgq52&!c7vpw!u!%tfhav*z'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -121,11 +121,11 @@ EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 
 if not EMAIL_DEBUG:
-    EMAIL_HOST = 'smtp.sendgrid.net'
-    EMAIL_PORT = 587
-    EMAIL_HOST_USER = 'helpmequit'
-    EMAIL_HOST_PASSWORD = 'bluk0jrekIsjefEldIdf3fop'
-    EMAIL_USE_TLS = True
+    EMAIL_HOST = os.environ['EMAIL_HOST']
+    EMAIL_PORT = int(os.environ['EMAIL_PORT'])
+    EMAIL_HOST_USER = os.environ['EMAIL_USER']
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
+    EMAIL_USE_TLS = bool(os.environ['EMAIL_TLS'])
 
 EMAIL_SIGNATURE = 'The Help Me Quit Team'
 
@@ -142,10 +142,10 @@ AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
                            'auth2.backends.FacebookBackend',)
 
 DEFAULT_FILE_STORAGE = 's3utils.MediaRootS3BotoStorage'
-AWS_ACCESS_KEY_ID = 'AKIAJZHQWOAUZLNWQ7KQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = 'test-helpmequit-users'
 AWS_PRELOAD_METADATA = True
 
-FACEBOOK_CLIENT_ID = '617178151691257'
-FACEBOOK_CLIENT_SECRET = 'e1935951369bf9dae8c91b59d0af96ad'
+FACEBOOK_CLIENT_ID = os.environ['FACEBOOK_CLIENT_ID']
+FACEBOOK_CLIENT_SECRET = os.environ['FACEBOOK_CLIENT_SECRET']
