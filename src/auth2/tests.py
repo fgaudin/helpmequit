@@ -1,7 +1,7 @@
 from django.test.testcases import TestCase
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from auth2.models import EmailAccount
+from auth2.models import EmailAccount, AlreadyExistsError
 
 
 class EmailBackendTestCase(TestCase):
@@ -25,3 +25,19 @@ class EmailBackendTestCase(TestCase):
         loggedin_user = authenticate(token='abcd')
         self.assertEqual(account.user, loggedin_user)
         self.assertIsNone(EmailAccount.objects.get(pk=account.id).hash)
+
+
+class EmailAccountTestCase(TestCase):
+    def test_create_account(self):
+        account = EmailAccount.objects.create_account('foo@bar.com', 'abcd')
+
+        self.assertEqual(User.objects.count(), 1)
+        user = User.objects.get()
+        self.assertEqual(user.email, 'foo@bar.com')
+        self.assertFalse(user.has_usable_password())
+        self.assertEqual(user, account.user)
+
+    def test_account_already_exists(self):
+        account1 = EmailAccount.objects.create_account('foo@bar.com', 'abcd')
+        with self.assertRaises(AlreadyExistsError):
+            account2 = EmailAccount.objects.create_account('foo@bar.com', '1234')

@@ -10,6 +10,10 @@ from quitter.models import Profile
 FIRSTNAME_REGEX = re.compile('(\w+)')
 
 
+class AlreadyExistsError(Exception):
+    pass
+
+
 class EmailAccountManager(models.Manager):
     def associate(self, user, hash):
         account = self.create(user=user,
@@ -18,6 +22,8 @@ class EmailAccountManager(models.Manager):
         return account
 
     def create_account(self, email, hash):
+        if self.filter(email=email).exists():
+            raise AlreadyExistsError()
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
