@@ -38,7 +38,7 @@ def create_default_profile():
     return user
 
 
-class ProfileTestCase(TestCase):
+class RegistrationTestCase(TestCase):
     def setUp(self):
         self.client = Client()
         create_default_profile()
